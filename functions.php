@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 require_once get_stylesheet_directory() . '/inc/attributes.php';
 require_once get_stylesheet_directory() . '/inc/wishlist.php';
+require_once get_stylesheet_directory() . '/inc/orders.php';
 
 /* ---------------------------------------------------------
  * Theme setup
