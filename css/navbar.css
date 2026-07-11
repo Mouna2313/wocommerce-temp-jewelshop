@@ -27,12 +27,7 @@
   font-weight: 500;
   color: var(--color-ink);
 }
-.navbar__logo span {
-  background: var(--gradient-vibrant);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.navbar__logo span { color: var(--color-coral); }
 
 .navbar__menu {
   display: flex;
@@ -78,7 +73,7 @@
 .navbar__badge {
   position: absolute;
   top: -4px; right: -6px;
-  background: var(--gradient-coral);
+  background: var(--color-coral);
   color: var(--color-surface);
   font-size: 10px;
   font-weight: 700;

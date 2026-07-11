@@ -111,7 +111,7 @@ while ( have_posts() ) :
 	<!-- Closing CTA -->
 	<section class="section container about-cta">
 		<h2><?php esc_html_e( 'Find the Piece You\'ll Wear Every Day', 'oraandstone' ); ?></h2>
-		<a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="btn btn--vibrant"><?php esc_html_e( 'Shop the Collection', 'oraandstone' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="btn btn--coral"><?php esc_html_e( 'Shop the Collection', 'oraandstone' ); ?></a>
 	</section>
 
 <?php endwhile; ?>

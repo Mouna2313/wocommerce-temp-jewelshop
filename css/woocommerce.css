@@ -392,7 +392,7 @@ ul.products li.product a.added_to_cart {
 .woocommerce-error { color: var(--color-error); }
 
 .woocommerce #payment #place_order, .woocommerce a.checkout-button {
-  background: var(--gradient-coral);
+  background: var(--color-coral);
   color: var(--color-surface);
   font-family: var(--font-utility);
   text-transform: uppercase;
@@ -659,9 +659,9 @@ ul.products li.product a.added_to_cart {
   border-radius: 999px;
   box-shadow: var(--shadow-soft);
 }
-.order-status.status-completed { background: var(--gradient-teal); color: var(--color-surface); box-shadow: 0 3px 10px rgba(14,122,86,0.35); }
-.order-status.status-processing { background: var(--gradient-coral); color: var(--color-surface); box-shadow: 0 3px 10px rgba(201,151,30,0.35); }
-.order-status.status-on-hold { background: var(--gradient-blue); color: var(--color-surface); box-shadow: 0 3px 10px rgba(41,82,200,0.3); }
+.order-status.status-completed { background: var(--color-teal); color: var(--color-surface); box-shadow: var(--shadow-teal); }
+.order-status.status-processing { background: var(--color-coral); color: var(--color-surface); box-shadow: var(--shadow-coral); }
+.order-status.status-on-hold { background: var(--color-blue); color: var(--color-surface); box-shadow: var(--shadow-blue); }
 .order-status.status-pending { background: var(--color-bg-alt); color: var(--color-ink-soft); }
 .order-status.status-cancelled,
 .order-status.status-failed { background: var(--color-error); color: var(--color-surface); }

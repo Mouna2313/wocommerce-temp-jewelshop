@@ -43,10 +43,7 @@
 .about-intro .label {
   display: block;
   margin-bottom: var(--space-sm);
-  background: var(--gradient-vibrant);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-coral);
 }
 .about-intro__lead { font-size: var(--text-body-lg); max-width: 56ch; margin-inline: auto; }
 
@@ -94,10 +91,7 @@
 .about-stats__number {
   font-family: var(--font-display);
   font-size: var(--text-h1);
-  background: var(--gradient-vibrant);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-coral-light);
 }
 .about-stats .label { color: rgba(250, 247, 242, 0.7); }
 @media (max-width: 700px) {

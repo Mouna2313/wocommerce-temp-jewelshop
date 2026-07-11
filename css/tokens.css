@@ -13,26 +13,33 @@
   /* ---- Color: ink (the palette's navy) ---- */
   --color-ink:           #123A52;   /* navy — replaces warm near-black */
   --color-ink-soft:      #3E5A70;
-  --color-ink-faint:     #7996A8;
+  --color-ink-faint:     #547080;   /* darkened from the raw swatch tint — #7996A8 read 2.97:1 on bg, fails AA */
 
-  /* ---- Color: signature pairing — coral (primary) + teal (secondary) ---- */
-  --color-coral:         #FF5C5F;   /* primary accent — CTAs, prices, focus */
-  --color-coral-light:   #FF8688;
+  /* ---- Color: signature pairing — coral (primary) + teal (secondary) ----
+     --color-coral is deliberately darker than the raw swatch coral: the
+     literal #FF5C5F only clears 3:1 (fine for a button fill's own border,
+     not for the white text sitting on it, and not for text set in coral).
+     Dark enough to also clear 4.5:1 on --color-bg-alt, where prices sit
+     inside .section--alt blocks. #FF5C5F survives as --color-coral-light
+     for large decorative surfaces (gradient highlights, hover glows,
+     dark-background focus rings) where text contrast isn't in play. */
+  --color-coral:         #C92A2D;   /* primary accent — CTAs, prices, focus (5.5:1 on white) */
+  --color-coral-light:   #FF5C5F;   /* decorative only — do not set text in this */
   --color-coral-dim:     #FFE2E2;
-  --color-teal:          #0E8388;   /* secondary accent */
+  --color-teal:          #0E8388;   /* secondary accent — 4.5:1 on white */
   --color-teal-light:    #14A8AE;
 
   /* ---- Color: remaining palette swatches ---- */
-  --color-pale-blue:     #C7DFF0;   /* literal 3rd swatch — light accent / tint fills */
-  --color-blue:          #2C6E96;   /* mid blue, between navy and pale blue — info accents */
+  --color-pale-blue:     #C7DFF0;   /* literal 3rd swatch — light accent / tint fills, not text */
+  --color-blue:          #2C6E96;   /* mid blue, between navy and pale blue — 5.6:1 on white */
   --color-blue-light:    #5A96BC;
-  --color-red:           #C81F35;   /* sale, urgency, error only */
+  --color-red:           #C81F35;   /* sale, urgency, error — 5.7:1 on white */
   --color-red-light:     #E14A5C;
 
   /* ---- Color: structure ---- */
-  --color-border:        #CDE0EC;
-  --color-border-strong: #AFCBDD;
-  --color-focus:         #FF5C5F;
+  --color-border:        #CDE0EC;   /* decorative dividers only — no contrast requirement */
+  --color-border-strong: #5F91B0;   /* functional input/button borders — 3.4:1 on white, meets WCAG 1.4.11 */
+  --color-focus:         var(--color-coral);
 
   /* ---- Color: state ---- */
   --color-error:         #C81F35;

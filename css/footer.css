@@ -21,12 +21,7 @@
   font-size: 1.4rem;
   margin-bottom: var(--space-xs);
 }
-.footer-brand__logo span {
-  background: var(--gradient-vibrant);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.footer-brand__logo span { color: var(--color-coral); }
 .footer-brand p { max-width: 32ch; }
 
 .footer-col h4 {

@@ -38,27 +38,22 @@
   transform: translateY(-1px);
 }
 
+/* Solid fills, not gradients — a gradient behind small button/badge
+   text dips too light in places for the white label to stay readable
+   (verified against WCAG contrast, not just by eye). Gradients stay on
+   backgrounds (hero/newsletter mesh, dividers) where no text sits
+   directly on top. */
 .btn--coral {
-  background: var(--gradient-coral);
+  background: var(--color-coral);
   color: var(--color-surface);
   border-color: var(--color-coral);
   box-shadow: var(--shadow-coral);
 }
 .btn--coral:hover {
-  border-color: var(--color-coral-light);
+  background: #C02832;
+  border-color: #C02832;
   box-shadow: var(--shadow-coral-hover);
   transform: translateY(-1px);
-}
-
-.btn--vibrant {
-  background: var(--gradient-vibrant);
-  color: var(--color-surface);
-  border-color: transparent;
-  box-shadow: var(--shadow-vibrant);
-}
-.btn--vibrant:hover {
-  box-shadow: 0 18px 44px rgba(139, 92, 246, 0.4), 0 6px 18px rgba(255, 79, 139, 0.3);
-  transform: translateY(-2px);
 }
 
 .btn--outline {
