@@ -7,11 +7,19 @@
   if (typeof oraandstoneWishlist === 'undefined') return;
 
   function setButtonState(btn, active) {
+    var label = active ? 'Remove from wishlist' : 'Add to wishlist';
     btn.classList.toggle('is-active', active);
     btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-    btn.setAttribute('aria-label', active ? 'Remove from wishlist' : 'Add to wishlist');
-    var path = btn.querySelector('svg');
-    if (path) path.setAttribute('fill', active ? 'currentColor' : 'none');
+
+    var text = btn.querySelector('.wishlist-btn__label');
+    if (text) {
+      text.textContent = label;
+    } else {
+      btn.setAttribute('aria-label', label);
+    }
+
+    var icon = btn.querySelector('svg');
+    if (icon) icon.setAttribute('fill', active ? 'currentColor' : 'none');
   }
 
   function updateCount(count) {

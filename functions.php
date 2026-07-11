@@ -20,9 +20,10 @@ function oraandstone_setup() {
 
 	// WooCommerce
 	add_theme_support( 'woocommerce' );
-	add_theme_support( 'wc-product-gallery-zoom' );   // native zoom off in favor of our loupe, but declared for compatibility
-	add_theme_support( 'wc-product-gallery-lightbox' );
-	add_theme_support( 'wc-product-gallery-slider' );
+	// Deliberately no wc-product-gallery-zoom/lightbox/slider support: the
+	// theme ships its own gallery (woocommerce/single-product/product-image.php)
+	// wired to the .loupe cursor-zoom instead of WooCommerce's default
+	// PhotoSwipe/Flexslider gallery.
 
 	// Nav menus
 	register_nav_menus( array(
@@ -61,6 +62,10 @@ function oraandstone_enqueue_assets() {
 	wp_enqueue_style( 'oraandstone-style', get_stylesheet_uri(), array( 'oraandstone-base' ), $version );
 
 	wp_enqueue_script( 'oraandstone-loupe', $theme_uri . '/js/loupe.js', array(), $version, true );
+
+	if ( class_exists( 'WooCommerce' ) && is_product() ) {
+		wp_enqueue_script( 'oraandstone-product-gallery', $theme_uri . '/js/product-gallery.js', array(), $version, true );
+	}
 
 	// WooCommerce-specific overrides, only on shop/product/cart/checkout/account pages
 	if ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() || is_product() || is_cart() || is_checkout() || is_account_page() ) ) {
@@ -110,6 +115,11 @@ add_filter( 'loop_shop_columns', function() { return 4; } );
 remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
+// Same reasoning on the single product page: the gallery override renders
+// its own sale badge, so drop WooCommerce's default "onsale" flash to avoid
+// showing it twice.
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+
 /* ---------------------------------------------------------
  * Cart count fragment for the navbar icon (AJAX-updated)
  * ------------------------------------------------------- */
@@ -123,3 +133,11 @@ function oraandstone_cart_count_fragment( $fragments ) {
 	return $fragments;
 }
 add_filter( 'woocommerce_add_to_cart_fragments', 'oraandstone_cart_count_fragment' );
+
+/* ---------------------------------------------------------
+ * Single product: wishlist button under the add-to-cart form
+ * ------------------------------------------------------- */
+function oraandstone_single_product_wishlist_button() {
+	oraandstone_wishlist_button( get_the_ID(), array( 'context' => 'single' ) );
+}
+add_action( 'woocommerce_single_product_summary', 'oraandstone_single_product_wishlist_button', 35 );

@@ -128,17 +128,22 @@ function oraandstone_wishlist_button( $product_id, $args = array() ) {
 	$defaults = array( 'context' => 'card' ); // 'card' | 'single'
 	$args     = wp_parse_args( $args, $defaults );
 	$active   = oraandstone_wishlist_has( $product_id );
+	$label    = $active ? __( 'Remove from wishlist', 'oraandstone' ) : __( 'Add to wishlist', 'oraandstone' );
+	$show_text = 'single' === $args['context'];
 	?>
 	<button
 		type="button"
 		class="wishlist-btn wishlist-btn--<?php echo esc_attr( $args['context'] ); ?><?php echo $active ? ' is-active' : ''; ?>"
 		data-product-id="<?php echo esc_attr( $product_id ); ?>"
 		aria-pressed="<?php echo $active ? 'true' : 'false'; ?>"
-		aria-label="<?php echo $active ? esc_attr__( 'Remove from wishlist', 'oraandstone' ) : esc_attr__( 'Add to wishlist', 'oraandstone' ); ?>"
+		<?php echo $show_text ? '' : 'aria-label="' . esc_attr( $label ) . '"'; ?>
 	>
 		<svg width="18" height="18" viewBox="0 0 24 24" fill="<?php echo $active ? 'currentColor' : 'none'; ?>" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
 			<path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.6 5 6 5c2 0 3.5 1.2 4 2.5.5-1.3 2-2.5 4-2.5 3.4 0 5.3 3.6 3.5 7.5C19 16.65 12 21 12 21z"/>
 		</svg>
+		<?php if ( $show_text ) : ?>
+			<span class="wishlist-btn__label"><?php echo esc_html( $label ); ?></span>
+		<?php endif; ?>
 	</button>
 	<?php
 }
