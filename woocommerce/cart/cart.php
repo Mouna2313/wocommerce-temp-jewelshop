@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 do_action( 'woocommerce_before_cart' );
 ?>
 
+<div class="cart-layout">
+
 <form class="woocommerce-cart-form cart-page" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -155,5 +157,13 @@ do_action( 'woocommerce_before_cart' );
 <div class="cart-collaterals">
 	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 </div>
+
+</div><!-- .cart-layout -->
+
+<?php if ( function_exists( 'woocommerce_cross_sell_display' ) ) : ?>
+	<div class="cart-cross-sells">
+		<?php woocommerce_cross_sell_display( 4, 4 ); ?>
+	</div>
+<?php endif; ?>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>

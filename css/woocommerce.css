@@ -495,7 +495,22 @@ ul.products li.product a.added_to_cart {
 .woocommerce #payment #place_order:hover, .woocommerce a.checkout-button:hover { box-shadow: var(--shadow-coral-hover); transform: translateY(-1px); }
 
 /* ---- Cart page ---- */
-.cart-page .product-thumbnail img { width: 80px; aspect-ratio: 1/1; object-fit: cover; }
+.cart-layout { display: grid; grid-template-columns: 1fr 380px; gap: var(--space-xl); align-items: start; }
+@media (max-width: 960px) { .cart-layout { grid-template-columns: 1fr; } }
+
+/* Fixed column widths — without this the unconstrained product-name
+   column claims most of the row's width under default table layout,
+   shoving price/quantity/subtotal into a cramped strip on the right
+   with a large dead gap in between. */
+.cart-page table.cart { table-layout: fixed; }
+.cart-page th.product-remove, .cart-page td.product-remove { width: 40px; }
+.cart-page th.product-thumbnail, .cart-page td.product-thumbnail { width: 84px; }
+.cart-page th.product-price, .cart-page td.product-price { width: 100px; }
+.cart-page th.product-quantity, .cart-page td.product-quantity { width: 130px; }
+.cart-page th.product-subtotal, .cart-page td.product-subtotal { width: 110px; text-align: right; }
+@media (max-width: 700px) { .cart-page table.cart { table-layout: auto; } }
+
+.cart-page .product-thumbnail img { width: 64px; aspect-ratio: 1/1; object-fit: cover; }
 .cart-page .product-remove a.remove {
   display: inline-flex;
   align-items: center;
@@ -513,8 +528,12 @@ ul.products li.product a.added_to_cart {
 .cart-page .product-remove a.remove:hover { color: var(--color-error); border-color: var(--color-error); }
 .cart-page .product-name a { color: var(--color-ink); }
 .cart-page .product-name a:hover { color: var(--color-coral); }
-.cart-page .product-price,
-.cart-page .product-subtotal { font-family: var(--font-utility); color: var(--color-coral); font-weight: 600; }
+/* Scoped to td only — .product-price/.product-subtotal are also the
+   class names on the <th> header cells, which were wrongly inheriting
+   this price-emphasis color instead of the standard uppercase header
+   style used by every other column. */
+.cart-page td.product-price,
+.cart-page td.product-subtotal { font-family: var(--font-utility); color: var(--color-coral); font-weight: 600; }
 
 .cart-page td.actions {
   display: flex;
@@ -560,19 +579,23 @@ ul.products li.product a.added_to_cart {
 }
 .cart-empty-state__message { font-size: var(--text-body-lg); margin-bottom: var(--space-lg); }
 
-.cart-collaterals { margin-top: var(--space-2xl); }
-.cart-collaterals .cross-sells { margin-bottom: var(--space-xl); }
-.cart-collaterals .cross-sells ul.products { grid-template-columns: repeat(4, 1fr); }
-@media (max-width: 700px) { .cart-collaterals .cross-sells ul.products { grid-template-columns: repeat(2, 1fr); } }
+/* Recommendations render full-width below the items/totals row (see
+   functions.php — cross-sell display is pulled off the totals hook so
+   it isn't squeezed into the narrow .cart_totals column). */
+.cart-cross-sells { margin-top: var(--space-2xl); }
+.cart-cross-sells .cross-sells > h2 { font-size: var(--text-h3); margin-bottom: var(--space-lg); }
+.cart-cross-sells ul.products { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 700px) { .cart-cross-sells ul.products { grid-template-columns: repeat(2, 1fr); } }
+
 .cart_totals {
-  max-width: 420px;
-  margin-left: auto;
   background: var(--color-bg-alt);
   padding: var(--space-lg);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
+  position: sticky;
+  top: calc(var(--space-lg) + 60px);
 }
-@media (max-width: 700px) { .cart_totals { max-width: none; } }
+@media (max-width: 960px) { .cart_totals { position: static; } }
 .cart_totals h2 { font-size: var(--text-h3); }
 .cart_totals table.shop_table td,
 .cart_totals table.shop_table th { border-bottom: 1px solid var(--color-border); }

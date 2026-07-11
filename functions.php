@@ -128,6 +128,12 @@ remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_pr
 // showing it twice.
 remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 
+// Cart page: cross-sells default into the same hook as the totals box
+// (woocommerce_cart_collaterals), which would squeeze a 4-up product grid
+// into the narrow totals column. Pulled out here so cart.php can render it
+// full-width below the items/totals row instead.
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display', 10 );
+
 /* ---------------------------------------------------------
  * Cart count fragment for the navbar icon (AJAX-updated)
  * ------------------------------------------------------- */
