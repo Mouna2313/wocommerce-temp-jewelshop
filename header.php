@@ -48,8 +48,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
 				</a>
 
-				<a class="navbar__icon-btn" href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>?wishlist=1" aria-label="<?php esc_attr_e( 'Wishlist', 'oraandstone' ); ?>">
+				<a class="navbar__icon-btn" href="<?php echo esc_url( oraandstone_wishlist_get_url() ); ?>" aria-label="<?php esc_attr_e( 'Wishlist', 'oraandstone' ); ?>">
 					<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.6 5 6 5c2 0 3.5 1.2 4 2.5.5-1.3 2-2.5 4-2.5 3.4 0 5.3 3.6 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
+					<?php if ( ! oraandstone_wishlist_plugin_active() ) : $oraandstone_wishlist_count = oraandstone_wishlist_count(); ?>
+						<span class="navbar__badge" id="oraandstone-wishlist-count"<?php echo $oraandstone_wishlist_count < 1 ? ' hidden' : ''; ?>><?php echo esc_html( $oraandstone_wishlist_count ); ?></span>
+					<?php endif; ?>
 				</a>
 
 				<a class="navbar__icon-btn" href="<?php echo esc_url( wc_get_cart_url() ); ?>" aria-label="<?php esc_attr_e( 'Cart', 'oraandstone' ); ?>">

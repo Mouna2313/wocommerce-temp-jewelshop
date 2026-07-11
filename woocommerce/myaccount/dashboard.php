@@ -39,6 +39,10 @@ $current_user = wp_get_current_user();
 			<h3><?php esc_html_e( 'Account Details', 'oraandstone' ); ?></h3>
 			<p><?php esc_html_e( 'Update your name, email, and password.', 'oraandstone' ); ?></p>
 		</a>
+		<a class="account-card" href="<?php echo esc_url( oraandstone_wishlist_get_url() ); ?>">
+			<h3><?php esc_html_e( 'Wishlist', 'oraandstone' ); ?></h3>
+			<p><?php esc_html_e( 'Saved pieces you\'re thinking about.', 'oraandstone' ); ?></p>
+		</a>
 	</div>
 
 	<?php

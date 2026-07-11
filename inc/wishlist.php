@@ -149,6 +149,57 @@ function oraandstone_wishlist_button( $product_id, $args = array() ) {
 }
 
 /* ---------------------------------------------------------
+ * My Account "Wishlist" tab (skipped entirely when a wishlist plugin,
+ * e.g. YITH, is active — it manages its own account integration).
+ * ------------------------------------------------------- */
+function oraandstone_wishlist_get_url() {
+	if ( oraandstone_wishlist_plugin_active() && function_exists( 'YITH_WCWL' ) && method_exists( YITH_WCWL(), 'get_wishlist_url' ) ) {
+		return YITH_WCWL()->get_wishlist_url();
+	}
+	return wc_get_endpoint_url( 'wishlist', '', wc_get_page_permalink( 'myaccount' ) );
+}
+
+function oraandstone_wishlist_add_endpoint() {
+	if ( oraandstone_wishlist_plugin_active() ) return;
+	add_rewrite_endpoint( 'wishlist', EP_ROOT | EP_PAGES );
+}
+add_action( 'init', 'oraandstone_wishlist_add_endpoint' );
+
+function oraandstone_wishlist_query_vars( $vars ) {
+	if ( oraandstone_wishlist_plugin_active() ) return $vars;
+	$vars['wishlist'] = 'wishlist';
+	return $vars;
+}
+add_filter( 'woocommerce_get_query_vars', 'oraandstone_wishlist_query_vars' );
+
+function oraandstone_wishlist_menu_item( $items ) {
+	if ( oraandstone_wishlist_plugin_active() ) return $items;
+
+	// Insert "Wishlist" just before "Log out".
+	$logout = array();
+	if ( isset( $items['customer-logout'] ) ) {
+		$logout['customer-logout'] = $items['customer-logout'];
+		unset( $items['customer-logout'] );
+	}
+	$items['wishlist'] = __( 'Wishlist', 'oraandstone' );
+	return array_merge( $items, $logout );
+}
+add_filter( 'woocommerce_account_menu_items', 'oraandstone_wishlist_menu_item' );
+
+function oraandstone_wishlist_endpoint_content() {
+	wc_get_template( 'myaccount/wishlist.php' );
+}
+add_action( 'woocommerce_account_wishlist_endpoint', 'oraandstone_wishlist_endpoint_content' );
+
+// Endpoint rewrite rules only take effect after a flush; do it once on
+// theme activation (add_rewrite_endpoint itself runs on every request).
+function oraandstone_wishlist_flush_rewrite_rules() {
+	oraandstone_wishlist_add_endpoint();
+	flush_rewrite_rules();
+}
+add_action( 'after_switch_theme', 'oraandstone_wishlist_flush_rewrite_rules' );
+
+/* ---------------------------------------------------------
  * Assets
  * ------------------------------------------------------- */
 function oraandstone_wishlist_enqueue_assets() {

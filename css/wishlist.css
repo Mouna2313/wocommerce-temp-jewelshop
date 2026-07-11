@@ -48,6 +48,8 @@
   font-weight: 600;
 }
 
+.navbar__badge[hidden] { display: none; }
+
 /* ---- Dedicated wishlist page/tab ---- */
 .wishlist-page__empty {
   padding-block: var(--space-lg);
