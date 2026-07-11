@@ -24,12 +24,20 @@ if ( ! $product || ! $product->is_visible() ) return;
 			<?php echo $product->get_image( 'woocommerce_thumbnail' ); // phpcs:ignore ?>
 		</a>
 
-		<?php if ( $product->is_on_sale() || ! $product->is_in_stock() ) : ?>
+		<?php
+		$is_new = ( time() - get_post_time( 'U', true, $product->get_id() ) ) < ( 30 * DAY_IN_SECONDS );
+		if ( $product->is_on_sale() || ! $product->is_in_stock() || $is_new ) :
+		?>
 			<span class="product-card__badge">
 				<?php if ( ! $product->is_in_stock() ) : ?>
 					<span class="badge badge--sold"><?php esc_html_e( 'Sold Out', 'oraandstone' ); ?></span>
-				<?php elseif ( $product->is_on_sale() ) : ?>
-					<span class="badge badge--gold"><?php esc_html_e( 'Sale', 'oraandstone' ); ?></span>
+				<?php else : ?>
+					<?php if ( $product->is_on_sale() ) : ?>
+						<span class="badge badge--sale"><?php esc_html_e( 'Sale', 'oraandstone' ); ?></span>
+					<?php endif; ?>
+					<?php if ( $is_new ) : ?>
+						<span class="badge badge--new"><?php esc_html_e( 'New', 'oraandstone' ); ?></span>
+					<?php endif; ?>
 				<?php endif; ?>
 			</span>
 		<?php endif; ?>

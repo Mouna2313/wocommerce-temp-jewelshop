@@ -606,13 +606,22 @@ ul.products li.product a.added_to_cart {
 .account-card {
   display: block;
   border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-gold);
   background: var(--color-surface);
   padding: var(--space-md);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
 }
-.account-card:hover { border-color: var(--color-gold); box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+.account-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-3px); }
+.account-card--gold     { border-top-color: var(--color-gold); }
+.account-card--sapphire { border-top-color: var(--color-sapphire); }
+.account-card--emerald  { border-top-color: var(--color-emerald); }
+.account-card--ruby     { border-top-color: var(--color-ruby); }
+.account-card--gold:hover     { box-shadow: var(--shadow-gold); }
+.account-card--sapphire:hover { box-shadow: var(--shadow-sapphire); }
+.account-card--emerald:hover  { box-shadow: 0 10px 28px rgba(14,122,86,0.3); }
+.account-card--ruby:hover     { box-shadow: var(--shadow-ruby); }
 .account-card h3 { font-size: var(--text-h3); margin-bottom: var(--space-2xs); }
 .account-card p { margin: 0; font-size: var(--text-small); }
 
@@ -650,9 +659,9 @@ ul.products li.product a.added_to_cart {
   border-radius: 999px;
   box-shadow: var(--shadow-soft);
 }
-.order-status.status-completed { background: var(--gradient-emerald); color: var(--color-surface); }
-.order-status.status-processing { background: var(--gradient-gold); color: var(--color-surface); box-shadow: 0 3px 10px rgba(168,130,60,0.35); }
-.order-status.status-on-hold { background: var(--color-gold-dim); color: var(--color-ink); }
+.order-status.status-completed { background: var(--gradient-emerald); color: var(--color-surface); box-shadow: 0 3px 10px rgba(14,122,86,0.35); }
+.order-status.status-processing { background: var(--gradient-gold); color: var(--color-surface); box-shadow: 0 3px 10px rgba(201,151,30,0.35); }
+.order-status.status-on-hold { background: var(--gradient-sapphire); color: var(--color-surface); box-shadow: 0 3px 10px rgba(41,82,200,0.3); }
 .order-status.status-pending { background: var(--color-bg-alt); color: var(--color-ink-soft); }
 .order-status.status-cancelled,
 .order-status.status-failed { background: var(--color-error); color: var(--color-surface); }

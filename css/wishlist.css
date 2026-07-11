@@ -20,8 +20,8 @@
               box-shadow var(--duration-fast) var(--ease-standard),
               transform var(--duration-fast) var(--ease-standard);
 }
-.wishlist-btn:hover { color: var(--color-clay); border-color: var(--color-clay); box-shadow: var(--shadow-card); transform: translateY(-1px); }
-.wishlist-btn.is-active { color: var(--color-clay); border-color: var(--color-clay); box-shadow: 0 4px 14px rgba(201,123,99,0.35); }
+.wishlist-btn:hover { color: var(--color-ruby); border-color: var(--color-ruby); box-shadow: var(--shadow-card); transform: translateY(-1px); }
+.wishlist-btn.is-active { color: var(--color-ruby); border-color: var(--color-ruby); background: #FFF0F3; box-shadow: var(--shadow-ruby); }
 .wishlist-btn:disabled { opacity: 0.6; cursor: default; }
 
 /* Overlaid on a product card's media */

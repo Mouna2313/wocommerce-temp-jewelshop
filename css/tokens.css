@@ -1,12 +1,13 @@
 /* =========================================================
    ORA & STONE — DESIGN TOKENS
-   Fine jewelry e-commerce. Ivory + antique gold + deep emerald.
+   Fine jewelry e-commerce. Ivory ground, gemstone-vivid accents —
+   gold, emerald, ruby, sapphire — each true to its stone, not muted.
    ========================================================= */
 
 :root {
   /* ---- Color: surfaces ---- */
-  --color-bg:            #FAF7F2;   /* ivory */
-  --color-bg-alt:        #F1ECE1;   /* deeper ivory panel */
+  --color-bg:            #FDF9F0;   /* warm ivory — calm canvas for vivid accents to pop against */
+  --color-bg-alt:        #F5EDDD;   /* deeper ivory panel */
   --color-surface:       #FFFFFF;
 
   /* ---- Color: ink ---- */
@@ -14,24 +15,28 @@
   --color-ink-soft:      #57534A;   /* secondary text */
   --color-ink-faint:     #8C877B;   /* tertiary / placeholder */
 
-  /* ---- Color: signature pairing ---- */
-  --color-gold:          #A8823C;   /* antique gold — primary accent */
-  --color-gold-light:    #C9A661;   /* gold hover / highlight */
-  --color-gold-dim:      #E9DCC0;   /* gold tint for subtle fills */
-  --color-emerald:       #2F4A3E;   /* deep emerald — secondary accent */
-  --color-emerald-light: #3F5F50;
+  /* ---- Color: signature pairing — bright, saturated gold + true emerald ---- */
+  --color-gold:          #C9971E;   /* luminous gold — primary accent */
+  --color-gold-light:    #F0BB3D;   /* bright gold hover / highlight */
+  --color-gold-dim:      #FBE7B3;   /* gold tint for subtle fills */
+  --color-emerald:       #0E7A56;   /* vivid emerald — secondary accent */
+  --color-emerald-light: #14A46E;
 
-  /* ---- Color: sparing highlight ---- */
-  --color-clay:          #C97B63;   /* rose clay — use only for tiny moments (badges, sale) */
+  /* ---- Color: gemstone accents — used deliberately, not everywhere ---- */
+  --color-ruby:          #D6284F;   /* ruby red — sale, wishlist, urgency */
+  --color-ruby-light:    #F0577A;
+  --color-sapphire:      #2952C8;   /* sapphire blue — new arrivals, info */
+  --color-sapphire-light:#4C78E8;
+  --color-clay:          #C97B63;   /* rose clay — softer accent, still available */
 
   /* ---- Color: structure ---- */
-  --color-border:        #E4DDD0;
-  --color-border-strong: #D5CBB8;
-  --color-focus:         #A8823C;
+  --color-border:        #E9DDC4;
+  --color-border-strong: #DCC89E;
+  --color-focus:         #C9971E;
 
   /* ---- Color: state ---- */
-  --color-error:         #A23B2E;
-  --color-success:       #2F4A3E;
+  --color-error:         #D6284F;
+  --color-success:       #0E7A56;
 
   /* ---- Typography ---- */
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -85,16 +90,20 @@
   /* ---- Elevation ----
      Warm-tinted shadows (ink at low opacity, not neutral grey) so depth
      reads as soft jeweler's-case lighting rather than generic UI shadow. */
-  --shadow-soft:      0 1px 2px rgba(28, 26, 23, 0.04), 0 8px 24px rgba(28, 26, 23, 0.06);
-  --shadow-card:       0 1px 3px rgba(46, 36, 18, 0.06), 0 10px 28px rgba(46, 36, 18, 0.09);
-  --shadow-card-hover: 0 4px 10px rgba(46, 36, 18, 0.10), 0 20px 44px rgba(46, 36, 18, 0.16);
-  --shadow-gold:       0 10px 28px rgba(168, 130, 60, 0.28);
-  --shadow-gold-hover: 0 14px 36px rgba(168, 130, 60, 0.38);
+  --shadow-soft:      0 1px 2px rgba(28, 26, 23, 0.05), 0 8px 24px rgba(28, 26, 23, 0.07);
+  --shadow-card:       0 1px 3px rgba(58, 40, 8, 0.07), 0 10px 28px rgba(58, 40, 8, 0.10);
+  --shadow-card-hover: 0 4px 10px rgba(58, 40, 8, 0.12), 0 20px 44px rgba(58, 40, 8, 0.18);
+  --shadow-gold:       0 10px 30px rgba(201, 151, 30, 0.38);
+  --shadow-gold-hover: 0 16px 40px rgba(201, 151, 30, 0.5);
+  --shadow-ruby:       0 10px 28px rgba(214, 40, 79, 0.35);
+  --shadow-sapphire:   0 10px 28px rgba(41, 82, 200, 0.32);
   --shadow-inset-hairline: inset 0 0 0 1px rgba(28, 26, 23, 0.05);
 
-  /* Gold surface gradient — for CTA moments that should feel like foil, not a flat fill */
-  --gradient-gold: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 55%, #8f6f34 100%);
-  --gradient-emerald: linear-gradient(135deg, var(--color-emerald-light) 0%, var(--color-emerald) 65%, #1c2c25 100%);
+  /* Gemstone surface gradients — foil/faceted feel, not flat fills */
+  --gradient-gold:     linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 55%, #9c7112 100%);
+  --gradient-emerald:  linear-gradient(135deg, var(--color-emerald-light) 0%, var(--color-emerald) 65%, #075038 100%);
+  --gradient-ruby:     linear-gradient(135deg, var(--color-ruby-light) 0%, var(--color-ruby) 60%, #9c1637 100%);
+  --gradient-sapphire: linear-gradient(135deg, var(--color-sapphire-light) 0%, var(--color-sapphire) 60%, #1a3a94 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {

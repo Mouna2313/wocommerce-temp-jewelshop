@@ -138,6 +138,8 @@
   box-shadow: var(--shadow-soft);
 }
 .badge--gold { background: var(--gradient-gold); color: var(--color-surface); }
+.badge--sale { background: var(--gradient-ruby); color: var(--color-surface); box-shadow: var(--shadow-ruby); }
+.badge--new  { background: var(--gradient-sapphire); color: var(--color-surface); box-shadow: var(--shadow-sapphire); }
 .badge--sold { background: var(--color-ink-faint); color: var(--color-surface); }
 
 .product-card__name {
@@ -216,7 +218,7 @@
 
 /* ---- Newsletter ---- */
 .newsletter {
-  background: linear-gradient(160deg, #232019 0%, var(--color-ink) 55%, #14120f 100%);
+  background: linear-gradient(155deg, #1c2e26 0%, var(--color-ink) 50%, #14120f 100%);
   color: var(--color-bg);
   padding-block: var(--space-xl);
   text-align: center;

@@ -35,7 +35,7 @@ $main_full_src = wp_get_attachment_image_url( $main_id, 'full' );
 
 	<div class="product-gallery__main loupe" id="product-gallery-main">
 		<?php if ( $product->is_on_sale() ) : ?>
-			<span class="product-gallery__badge"><span class="badge badge--gold"><?php esc_html_e( 'Sale', 'oraandstone' ); ?></span></span>
+			<span class="product-gallery__badge"><span class="badge badge--sale"><?php esc_html_e( 'Sale', 'oraandstone' ); ?></span></span>
 		<?php endif; ?>
 		<?php
 		echo wp_get_attachment_image( $main_id, 'full', false, array(
