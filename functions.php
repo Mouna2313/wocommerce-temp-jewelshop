@@ -5,6 +5,9 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+require_once get_stylesheet_directory() . '/inc/attributes.php';
+require_once get_stylesheet_directory() . '/inc/wishlist.php';
+
 /* ---------------------------------------------------------
  * Theme setup
  * ------------------------------------------------------- */
@@ -60,7 +63,7 @@ function oraandstone_enqueue_assets() {
 	wp_enqueue_script( 'oraandstone-loupe', $theme_uri . '/js/loupe.js', array(), $version, true );
 
 	// WooCommerce-specific overrides, only on shop/product/cart/checkout/account pages
-	if ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_category() || is_product() || is_cart() || is_checkout() || is_account_page() ) ) {
+	if ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() || is_product() || is_cart() || is_checkout() || is_account_page() ) ) {
 		wp_enqueue_style( 'oraandstone-woocommerce', $theme_uri . '/css/woocommerce.css', array( 'oraandstone-tokens' ), $version );
 	}
 }
@@ -100,6 +103,12 @@ add_action( 'woocommerce_after_main_content', 'oraandstone_wc_wrapper_end' );
 
 // Change default product grid columns to match our 4-col design
 add_filter( 'loop_shop_columns', function() { return 4; } );
+
+// content-product.php builds its own <a> wrapper (.product-card__link) instead
+// of WooCommerce's default, so drop the default link open/close — everything
+// else on these hooks (add-to-cart button, etc.) still fires normally.
+remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 
 /* ---------------------------------------------------------
  * Cart count fragment for the navbar icon (AJAX-updated)

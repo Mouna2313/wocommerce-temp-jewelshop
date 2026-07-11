@@ -1,0 +1,65 @@
+/* =========================================================
+   ORA & STONE — WISHLIST
+   Add/remove button (product cards + single product) and the
+   dedicated wishlist listing (account page).
+   ========================================================= */
+
+.wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink-soft);
+  cursor: pointer;
+  padding: 0;
+  transition: color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard),
+              background var(--duration-fast) var(--ease-standard);
+}
+.wishlist-btn:hover { color: var(--color-clay); border-color: var(--color-clay); }
+.wishlist-btn.is-active { color: var(--color-clay); border-color: var(--color-clay); }
+.wishlist-btn:disabled { opacity: 0.6; cursor: default; }
+
+/* Overlaid on a product card's media */
+.wishlist-btn--card {
+  position: absolute;
+  top: var(--space-2xs);
+  right: var(--space-2xs);
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Inline, beside the single-product add-to-cart button */
+.wishlist-btn--single {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+/* ---- Dedicated wishlist page/tab ---- */
+.wishlist-page__empty {
+  padding-block: var(--space-lg);
+  text-align: center;
+}
+.wishlist-page__empty p { margin-bottom: var(--space-md); }
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg) var(--space-md);
+}
+@media (max-width: 1024px) { .wishlist-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 700px)  { .wishlist-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md) var(--space-sm); } }
+@media (max-width: 480px)  { .wishlist-grid { grid-template-columns: 1fr; } }
+
+.wishlist-grid .product-card__actions {
+  display: flex;
+  gap: var(--space-2xs);
+  margin-top: var(--space-2xs);
+}
+.wishlist-grid .product-card__actions .btn { flex: 1; }
