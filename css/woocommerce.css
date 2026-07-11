@@ -319,8 +319,25 @@ ul.products li.product a.added_to_cart {
 .woocommerce table.variations tr { display: block; margin-bottom: var(--space-sm); }
 .woocommerce table.variations td, .woocommerce table.variations th { border: none; padding: var(--space-2xs) 0; display: block; text-align: left; }
 .woocommerce table.variations th.label { padding-bottom: var(--space-3xs); }
-.woocommerce table.variations td.value { position: relative; display: block; max-width: 320px; }
+/* Grid, not flex/block: the chevron is a pseudo-element on the <td>,
+   and select + the "Reset" link are two separate real children in
+   that same <td>. With plain top:50% positioning, the pseudo centers
+   against the <td>'s FULL box — select height plus Reset's height/
+   width, whichever layout — never just the select. Grid lets the
+   pseudo be explicitly placed into the select's own column/row via
+   grid-column/row, so it centers against the select specifically
+   regardless of what else shares the cell. */
+.woocommerce table.variations td.value {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 420px;
+}
 .woocommerce table.variations select {
+  grid-column: 1;
+  grid-row: 1;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -347,19 +364,23 @@ ul.products li.product a.added_to_cart {
 }
 .woocommerce table.variations td.value::after {
   content: "";
-  position: absolute;
-  right: 1.1em;
-  top: 50%;
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+  margin-right: 1.1em;
   width: 7px;
   height: 7px;
   border-right: 2px solid var(--color-ink);
   border-bottom: 2px solid var(--color-ink);
-  transform: translateY(-50%) rotate(45deg);
+  transform: rotate(45deg);
   pointer-events: none;
 }
 .woocommerce table.variations .reset_variations {
+  grid-column: 2;
+  grid-row: 1;
   display: inline-block;
-  margin-left: var(--space-sm);
+  white-space: nowrap;
   font-family: var(--font-utility);
   font-size: var(--text-small);
   color: var(--color-ink-faint);
