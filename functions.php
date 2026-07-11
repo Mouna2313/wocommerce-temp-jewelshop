@@ -56,6 +56,7 @@ function oraandstone_enqueue_assets() {
 	wp_enqueue_style( 'oraandstone-base',        $theme_uri . '/css/base.css', array( 'oraandstone-tokens' ), $version );
 	wp_enqueue_style( 'oraandstone-buttons',     $theme_uri . '/css/buttons.css', array( 'oraandstone-tokens' ), $version );
 	wp_enqueue_style( 'oraandstone-navbar',      $theme_uri . '/css/navbar.css', array( 'oraandstone-tokens' ), $version );
+	wp_enqueue_style( 'oraandstone-mobile-nav',  $theme_uri . '/css/mobile-nav.css', array( 'oraandstone-navbar' ), $version );
 	wp_enqueue_style( 'oraandstone-hero',        $theme_uri . '/css/hero.css', array( 'oraandstone-tokens' ), $version );
 	wp_enqueue_style( 'oraandstone-footer',      $theme_uri . '/css/footer.css', array( 'oraandstone-tokens' ), $version );
 
@@ -63,6 +64,7 @@ function oraandstone_enqueue_assets() {
 	wp_enqueue_style( 'oraandstone-style', get_stylesheet_uri(), array( 'oraandstone-base' ), $version );
 
 	wp_enqueue_script( 'oraandstone-loupe', $theme_uri . '/js/loupe.js', array(), $version, true );
+	wp_enqueue_script( 'oraandstone-mobile-nav', $theme_uri . '/js/mobile-nav.js', array(), $version, true );
 
 	if ( class_exists( 'WooCommerce' ) && is_product() ) {
 		wp_enqueue_script( 'oraandstone-product-gallery', $theme_uri . '/js/product-gallery.js', array(), $version, true );
