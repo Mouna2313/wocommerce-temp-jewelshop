@@ -1,0 +1,13 @@
+/*
+Theme Name:   Ora & Stone
+Theme URI:    https://example.com
+Author:       Your Studio
+Description:  Custom WooCommerce theme for Ora & Stone, a fine jewelry e-commerce brand. Ivory, antique gold, and deep emerald palette with a signature jeweler's-loupe product zoom interaction.
+Version:      1.0.0
+Requires PHP: 7.4
+Text Domain:  oraandstone
+*/
+
+/* This file intentionally left as the required WP theme header.
+   All actual styles are enqueued as separate partials from /css
+   via functions.php so nothing here needs manual maintenance. */

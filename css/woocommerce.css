@@ -1,0 +1,162 @@
+/* =========================================================
+   ORA & STONE — WOOCOMMERCE OVERRIDES
+   Loaded only on shop / product / cart / checkout / account pages.
+   Restyles default WooCommerce markup — does not alter its logic.
+   ========================================================= */
+
+.woocommerce-main { padding-block: var(--space-xl) var(--space-2xl); }
+
+/* ---- Shop archive ---- */
+.woocommerce-products-header { margin-bottom: var(--space-lg); }
+.woocommerce-result-count { font-family: var(--font-utility); font-size: var(--text-small); color: var(--color-ink-soft); }
+.woocommerce-ordering select {
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-surface);
+  padding: 0.6em 1em;
+  font-family: var(--font-utility);
+  font-size: var(--text-small);
+}
+
+ul.products {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg) var(--space-md);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 1024px) { ul.products { grid-template-columns: repeat(3, 1fr) !important; } }
+@media (max-width: 700px)  { ul.products { grid-template-columns: repeat(2, 1fr) !important; } }
+
+ul.products li.product {
+  list-style: none;
+}
+ul.products li.product img { aspect-ratio: 1/1; object-fit: cover; }
+ul.products li.product .woocommerce-loop-product__title {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  margin-top: var(--space-xs);
+}
+ul.products li.product .price {
+  font-family: var(--font-utility);
+  font-size: var(--text-small);
+  color: var(--color-gold);
+  font-weight: 600;
+}
+ul.products li.product .button {
+  font-family: var(--font-utility);
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  background: var(--color-ink);
+  color: var(--color-bg);
+  padding: 0.7em 1.2em;
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-2xs);
+}
+ul.products li.product .button:hover { background: var(--color-emerald); }
+
+/* ---- Filters sidebar ---- */
+.widget_price_filter .price_slider_amount .button { background: var(--color-gold); border-radius: var(--radius-sm); }
+.widget ul li { border-bottom: 1px solid var(--color-border); padding-block: var(--space-2xs); }
+
+/* ---- Single product ---- */
+.woocommerce div.product .product_title { font-family: var(--font-display); font-size: var(--text-h1); }
+.woocommerce div.product p.price {
+  font-family: var(--font-utility);
+  color: var(--color-gold);
+  font-size: var(--text-h3);
+  font-weight: 600;
+}
+.woocommerce div.product .woocommerce-product-gallery__image { aspect-ratio: 1/1; overflow: hidden; }
+.woocommerce div.product form.cart .button {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 0.95em 2em;
+  font-family: var(--font-utility);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+}
+.woocommerce div.product form.cart .button:hover { background: var(--color-emerald); }
+.woocommerce table.variations td, .woocommerce table.variations th { border: none; padding: var(--space-2xs) 0; }
+.woocommerce div.product .woocommerce-tabs ul.tabs li { font-family: var(--font-utility); text-transform: uppercase; letter-spacing: var(--label-tracking); font-size: var(--text-small); }
+
+/* ---- Cart & checkout ---- */
+.woocommerce table.shop_table { border: none; border-collapse: collapse; }
+.woocommerce table.shop_table th { font-family: var(--font-utility); text-transform: uppercase; font-size: var(--text-label); letter-spacing: var(--label-tracking); border-bottom: 1px solid var(--color-ink); padding-bottom: var(--space-xs); }
+.woocommerce table.shop_table td { border-bottom: 1px solid var(--color-border); padding-block: var(--space-sm); }
+.woocommerce #order_review, .woocommerce-checkout-review-order { background: var(--color-bg-alt); padding: var(--space-lg); border-radius: var(--radius-md); }
+.woocommerce form .form-row input.input-text, .woocommerce form .form-row select {
+  border: 1px solid var(--color-border-strong);
+  padding: 0.75em 1em;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+}
+.woocommerce #payment #place_order, .woocommerce a.checkout-button {
+  background: var(--color-gold);
+  color: var(--color-surface);
+  font-family: var(--font-utility);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  border-radius: var(--radius-sm);
+}
+.woocommerce #payment #place_order:hover, .woocommerce a.checkout-button:hover { background: var(--color-gold-light); }
+
+/* ---- My Account ---- */
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  border-right: 1px solid var(--color-border);
+  padding-right: var(--space-md);
+}
+.woocommerce-account .woocommerce-MyAccount-navigation ul li {
+  font-family: var(--font-utility);
+  text-transform: uppercase;
+  font-size: var(--text-small);
+  letter-spacing: var(--label-tracking);
+  padding-block: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+.woocommerce-account .woocommerce-MyAccount-navigation ul li.is-active a,
+.woocommerce-account .woocommerce-MyAccount-navigation ul li a:hover { color: var(--color-gold); }
+.woocommerce-account .woocommerce-MyAccount-content { padding-left: var(--space-lg); }
+
+.woocommerce-MyAccount-navigation ul,
+.woocommerce-account .woocommerce-MyAccount-content {
+  display: block;
+}
+.woocommerce-account .u-columns.col2-set { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-lg); }
+
+/* Order status badges */
+.woocommerce-orders-table__cell-order-status mark {
+  background: var(--color-bg-alt);
+  color: var(--color-ink);
+  font-family: var(--font-utility);
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+/* ---- Login / Register ---- */
+.woocommerce-account.woocommerce-lostpassword form.login,
+.woocommerce form.login, .woocommerce form.register {
+  max-width: 420px;
+  margin-inline: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+}
+.woocommerce form.login .button, .woocommerce form.register .button {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  width: 100%;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-utility);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  padding: 0.9em;
+}
+.woocommerce form.login .button:hover, .woocommerce form.register .button:hover { background: var(--color-emerald); }
+.woocommerce-form-login__rememberme { display: flex; align-items: center; gap: var(--space-2xs); }

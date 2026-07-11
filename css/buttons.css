@@ -1,0 +1,68 @@
+/* =========================================================
+   ORA & STONE — BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  font-family: var(--font-utility);
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  font-weight: 600;
+  padding: 0.95em 2em;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-standard),
+              color var(--duration-fast) var(--ease-standard),
+              border-color var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-color: var(--color-ink);
+}
+.btn--primary:hover {
+  background: var(--color-emerald);
+  border-color: var(--color-emerald);
+}
+
+.btn--gold {
+  background: var(--color-gold);
+  color: var(--color-surface);
+  border-color: var(--color-gold);
+}
+.btn--gold:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+.btn--outline:hover {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink-soft);
+  border-color: transparent;
+  padding-inline: var(--space-2xs);
+}
+.btn--ghost:hover { color: var(--color-ink); }
+
+.btn--full { width: 100%; }
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

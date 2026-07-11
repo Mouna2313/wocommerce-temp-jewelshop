@@ -1,0 +1,95 @@
+/* =========================================================
+   ORA & STONE — NAVBAR
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  gap: var(--space-lg);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.navbar__logo span { color: var(--color-gold); }
+
+.navbar__menu {
+  display: flex;
+  gap: var(--space-lg);
+  font-family: var(--font-utility);
+  font-size: var(--text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+}
+
+.navbar__menu a {
+  position: relative;
+  padding-bottom: 4px;
+}
+.navbar__menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: right var(--duration-base) var(--ease-standard);
+}
+.navbar__menu a:hover::after { right: 0; }
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar__icon-btn {
+  position: relative;
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ink);
+  padding: var(--space-3xs);
+}
+.navbar__icon-btn:hover { color: var(--color-gold); }
+
+.navbar__badge {
+  position: absolute;
+  top: -4px; right: -6px;
+  background: var(--color-gold);
+  color: var(--color-surface);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 50%;
+  width: 16px; height: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .navbar__menu { display: none; }
+  .navbar__toggle { display: inline-flex; }
+}

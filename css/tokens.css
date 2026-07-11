@@ -1,0 +1,94 @@
+/* =========================================================
+   ORA & STONE — DESIGN TOKENS
+   Fine jewelry e-commerce. Ivory + antique gold + deep emerald.
+   ========================================================= */
+
+:root {
+  /* ---- Color: surfaces ---- */
+  --color-bg:            #FAF7F2;   /* ivory */
+  --color-bg-alt:        #F1ECE1;   /* deeper ivory panel */
+  --color-surface:       #FFFFFF;
+
+  /* ---- Color: ink ---- */
+  --color-ink:           #1C1A17;   /* warm near-black */
+  --color-ink-soft:      #57534A;   /* secondary text */
+  --color-ink-faint:     #8C877B;   /* tertiary / placeholder */
+
+  /* ---- Color: signature pairing ---- */
+  --color-gold:          #A8823C;   /* antique gold — primary accent */
+  --color-gold-light:    #C9A661;   /* gold hover / highlight */
+  --color-gold-dim:      #E9DCC0;   /* gold tint for subtle fills */
+  --color-emerald:       #2F4A3E;   /* deep emerald — secondary accent */
+  --color-emerald-light: #3F5F50;
+
+  /* ---- Color: sparing highlight ---- */
+  --color-clay:          #C97B63;   /* rose clay — use only for tiny moments (badges, sale) */
+
+  /* ---- Color: structure ---- */
+  --color-border:        #E4DDD0;
+  --color-border-strong: #D5CBB8;
+  --color-focus:         #A8823C;
+
+  /* ---- Color: state ---- */
+  --color-error:         #A23B2E;
+  --color-success:       #2F4A3E;
+
+  /* ---- Typography ---- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-utility: "Work Sans", sans-serif;
+
+  /* Fraunces optical-size / softness axes, used only at hero scale */
+  --font-display-hero-settings: "opsz" 72, "SOFT" 40, "WONK" 0;
+  --font-display-settings:      "opsz" 24, "SOFT" 20, "WONK" 0;
+
+  /* ---- Type scale ---- */
+  --text-hero:   clamp(2.75rem, 5vw + 1rem, 5.5rem);
+  --text-h1:     clamp(2.25rem, 3vw + 1rem, 3.25rem);
+  --text-h2:     clamp(1.75rem, 2vw + 1rem, 2.25rem);
+  --text-h3:     1.375rem;
+  --text-body-lg:1.125rem;
+  --text-body:   1rem;
+  --text-small:  0.875rem;
+  --text-label:  0.75rem;
+
+  /* ---- Utility label styling (eyebrows, filters, prices) ---- */
+  --label-tracking: 0.12em;
+
+  /* ---- Spacing scale ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+
+  /* ---- Layout ---- */
+  --content-max: 1280px;
+  --content-narrow: 760px;
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* ---- Radius (kept minimal — hairlines over boxes) ---- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  /* ---- Elevation (used sparingly — hairlines preferred) ---- */
+  --shadow-soft: 0 1px 2px rgba(28, 26, 23, 0.04), 0 8px 24px rgba(28, 26, 23, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}
