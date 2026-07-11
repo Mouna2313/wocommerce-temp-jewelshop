@@ -72,6 +72,11 @@ function oraandstone_enqueue_assets() {
 	if ( class_exists( 'WooCommerce' ) && ( is_shop() || is_product_category() || is_product_tag() || is_product_taxonomy() || is_product() || is_cart() || is_checkout() || is_account_page() ) ) {
 		wp_enqueue_style( 'oraandstone-woocommerce', $theme_uri . '/css/woocommerce.css', array( 'oraandstone-tokens' ), $version );
 	}
+
+	// Generic + About page templates
+	if ( is_page() ) {
+		wp_enqueue_style( 'oraandstone-page', $theme_uri . '/css/page.css', array( 'oraandstone-tokens' ), $version );
+	}
 }
 add_action( 'wp_enqueue_scripts', 'oraandstone_enqueue_assets' );
 
