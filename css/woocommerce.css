@@ -58,6 +58,7 @@
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  outline: none; /* native <select> focus rings ignore appearance:none in some browsers — replaced by the box-shadow ring below */
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   padding: 0.65em 2.3em 0.65em 1.3em;
@@ -75,10 +76,12 @@
               box-shadow var(--duration-fast) var(--ease-standard);
 }
 .woocommerce-ordering select:hover,
+.woocommerce-ordering select:focus,
 .woocommerce-ordering select:focus-visible {
+  outline: none;
   border-color: var(--color-coral);
   color: var(--color-coral);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-card-hover), 0 0 0 3px rgba(201, 42, 45, 0.15);
 }
 .woocommerce-ordering::after {
   content: "";
@@ -321,21 +324,27 @@ ul.products li.product a.added_to_cart {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
+  outline: none; /* native <select> focus rings ignore appearance:none in some browsers — replaced by the box-shadow ring below */
   width: 100%;
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--color-border);
   background: var(--color-surface);
-  padding: 0.75em 2.6em 0.75em 1em;
-  border-radius: var(--radius-sm);
+  padding: 0.75em 2.6em 0.75em 1.1em;
+  border-radius: var(--radius-md);
   font-family: var(--font-utility);
   font-size: var(--text-small);
   font-weight: 600;
   color: var(--color-ink);
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-card);
   cursor: pointer;
   transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
 }
-.woocommerce table.variations select:hover { border-color: var(--color-coral); }
-.woocommerce table.variations select:focus-visible { border-color: var(--color-coral); box-shadow: var(--shadow-coral); }
+.woocommerce table.variations select:hover { border-color: var(--color-coral); box-shadow: var(--shadow-card-hover); }
+.woocommerce table.variations select:focus,
+.woocommerce table.variations select:focus-visible {
+  outline: none;
+  border-color: var(--color-coral);
+  box-shadow: var(--shadow-card-hover), 0 0 0 3px rgba(201, 42, 45, 0.15);
+}
 .woocommerce table.variations td.value::after {
   content: "";
   position: absolute;
