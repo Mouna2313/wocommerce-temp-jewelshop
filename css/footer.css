@@ -40,7 +40,7 @@
 }
 .footer-col ul { display: flex; flex-direction: column; gap: var(--space-2xs); }
 .footer-col a { color: var(--color-ink-soft); font-size: var(--text-small); }
-.footer-col a:hover { color: var(--color-gold); }
+.footer-col a:hover { color: var(--color-coral); }
 
 .footer-bottom {
   display: flex;

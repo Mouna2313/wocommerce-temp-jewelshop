@@ -1,46 +1,42 @@
 /* =========================================================
    ORA & STONE — DESIGN TOKENS
-   Fine jewelry e-commerce. Ivory ground, gemstone-vivid accents —
-   gold, emerald, ruby, sapphire — each true to its stone, not muted.
+   Palette locked to the client-supplied swatch: navy, teal,
+   pale blue, coral, red. Cool, saturated, high-contrast.
    ========================================================= */
 
 :root {
   /* ---- Color: surfaces ---- */
-  --color-bg:            #FDF9F0;   /* warm ivory — calm canvas for vivid accents to pop against */
-  --color-bg-alt:        #F5EDDD;   /* deeper ivory panel */
+  --color-bg:            #F6FAFD;   /* near-white, cool undertone */
+  --color-bg-alt:        #DCEEF8;   /* light tint of the palette's pale blue */
   --color-surface:       #FFFFFF;
 
-  /* ---- Color: ink ---- */
-  --color-ink:           #1C1A17;   /* warm near-black */
-  --color-ink-soft:      #57534A;   /* secondary text */
-  --color-ink-faint:     #8C877B;   /* tertiary / placeholder */
+  /* ---- Color: ink (the palette's navy) ---- */
+  --color-ink:           #123A52;   /* navy — replaces warm near-black */
+  --color-ink-soft:      #3E5A70;
+  --color-ink-faint:     #7996A8;
 
-  /* ---- Color: signature pairing — bright, saturated gold + true emerald ---- */
-  --color-gold:          #C9971E;   /* luminous gold — primary accent */
-  --color-gold-light:    #F0BB3D;   /* bright gold hover / highlight */
-  --color-gold-dim:      #FBE7B3;   /* gold tint for subtle fills */
-  --color-emerald:       #0E7A56;   /* vivid emerald — secondary accent */
-  --color-emerald-light: #14A46E;
+  /* ---- Color: signature pairing — coral (primary) + teal (secondary) ---- */
+  --color-coral:         #FF5C5F;   /* primary accent — CTAs, prices, focus */
+  --color-coral-light:   #FF8688;
+  --color-coral-dim:     #FFE2E2;
+  --color-teal:          #0E8388;   /* secondary accent */
+  --color-teal-light:    #14A8AE;
 
-  /* ---- Color: gemstone accents — pink + blue carry the vibrant load ---- */
-  --color-pink:          #FF4F8B;   /* pink sapphire / morganite — wishlist, playful accent */
-  --color-pink-light:    #FF85B0;
-  --color-violet:        #8B5CF6;   /* amethyst — bridges pink to blue in gradients */
-  --color-violet-light:  #AC85FA;
-  --color-sapphire:      #2E7CF6;   /* true sapphire blue — new arrivals, info, gradients */
-  --color-sapphire-light:#5B9BFF;
-  --color-ruby:          #E31C4D;   /* ruby red — sale, urgency only */
-  --color-ruby-light:    #FF4D74;
-  --color-clay:          #C97B63;   /* rose clay — softer accent, still available */
+  /* ---- Color: remaining palette swatches ---- */
+  --color-pale-blue:     #C7DFF0;   /* literal 3rd swatch — light accent / tint fills */
+  --color-blue:          #2C6E96;   /* mid blue, between navy and pale blue — info accents */
+  --color-blue-light:    #5A96BC;
+  --color-red:           #C81F35;   /* sale, urgency, error only */
+  --color-red-light:     #E14A5C;
 
   /* ---- Color: structure ---- */
-  --color-border:        #E9DDC4;
-  --color-border-strong: #DCC89E;
-  --color-focus:         #C9971E;
+  --color-border:        #CDE0EC;
+  --color-border-strong: #AFCBDD;
+  --color-focus:         #FF5C5F;
 
   /* ---- Color: state ---- */
-  --color-error:         #D6284F;
-  --color-success:       #0E7A56;
+  --color-error:         #C81F35;
+  --color-success:       #0E8388;
 
   /* ---- Typography ---- */
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
@@ -92,42 +88,46 @@
   --duration-slow: 600ms;
 
   /* ---- Elevation ----
-     Warm-tinted shadows (ink at low opacity, not neutral grey) so depth
-     reads as soft jeweler's-case lighting rather than generic UI shadow. */
-  --shadow-soft:      0 1px 2px rgba(28, 26, 23, 0.05), 0 8px 24px rgba(28, 26, 23, 0.07);
-  --shadow-card:       0 1px 3px rgba(58, 40, 8, 0.07), 0 10px 28px rgba(58, 40, 8, 0.10);
-  --shadow-card-hover: 0 4px 10px rgba(58, 40, 8, 0.12), 0 20px 44px rgba(58, 40, 8, 0.18);
-  --shadow-gold:       0 10px 30px rgba(201, 151, 30, 0.38);
-  --shadow-gold-hover: 0 16px 40px rgba(201, 151, 30, 0.5);
-  --shadow-ruby:       0 10px 28px rgba(227, 28, 77, 0.35);
-  --shadow-sapphire:   0 10px 28px rgba(46, 124, 246, 0.35);
-  --shadow-pink:       0 10px 28px rgba(255, 79, 139, 0.35);
-  --shadow-vibrant:    0 12px 32px rgba(139, 92, 246, 0.28), 0 4px 14px rgba(255, 79, 139, 0.22);
-  --shadow-inset-hairline: inset 0 0 0 1px rgba(28, 26, 23, 0.05);
+     Navy-tinted shadows (ink at low opacity, not neutral grey) so depth
+     reads as part of this palette rather than generic UI shadow. */
+  --shadow-soft:      0 1px 2px rgba(18, 58, 82, 0.06), 0 8px 24px rgba(18, 58, 82, 0.08);
+  --shadow-card:       0 1px 3px rgba(18, 58, 82, 0.08), 0 10px 28px rgba(18, 58, 82, 0.12);
+  --shadow-card-hover: 0 4px 10px rgba(18, 58, 82, 0.14), 0 20px 44px rgba(18, 58, 82, 0.2);
+  --shadow-coral:      0 10px 30px rgba(255, 92, 95, 0.4);
+  --shadow-coral-hover:0 16px 40px rgba(255, 92, 95, 0.52);
+  --shadow-teal:       0 10px 28px rgba(14, 131, 136, 0.35);
+  --shadow-blue:       0 10px 28px rgba(44, 110, 150, 0.32);
+  --shadow-red:        0 10px 28px rgba(200, 31, 53, 0.35);
+  --shadow-vibrant:    0 12px 32px rgba(14, 131, 136, 0.26), 0 4px 14px rgba(255, 92, 95, 0.24);
+  --shadow-inset-hairline: inset 0 0 0 1px rgba(18, 58, 82, 0.06);
 
-  /* Gemstone surface gradients — foil/faceted feel, not flat fills */
-  --gradient-gold:     linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-gold) 55%, #9c7112 100%);
-  --gradient-emerald:  linear-gradient(135deg, var(--color-emerald-light) 0%, var(--color-emerald) 65%, #075038 100%);
-  --gradient-ruby:     linear-gradient(135deg, var(--color-ruby-light) 0%, var(--color-ruby) 60%, #9c1637 100%);
-  --gradient-sapphire: linear-gradient(135deg, var(--color-sapphire-light) 0%, var(--color-sapphire) 60%, #1a3a94 100%);
-  --gradient-pink:     linear-gradient(135deg, var(--color-pink-light) 0%, var(--color-pink) 60%, #C71F63 100%);
+  /* Palette surface gradients — foil/faceted feel, not flat fills */
+  --gradient-coral: linear-gradient(135deg, var(--color-coral-light) 0%, var(--color-coral) 55%, #C93F42 100%);
+  --gradient-teal:  linear-gradient(135deg, var(--color-teal-light) 0%, var(--color-teal) 65%, #095B5F 100%);
+  --gradient-red:   linear-gradient(135deg, var(--color-red-light) 0%, var(--color-red) 60%, #8F1526 100%);
+  --gradient-blue:  linear-gradient(135deg, var(--color-blue-light) 0%, var(--color-blue) 60%, var(--color-ink) 100%);
 
-  /* Signature multi-hue gradient — pink through violet to sapphire.
-     The one deliberately loud move in the palette: used sparingly on
-     hero CTAs, price emphasis, and section accents, not everywhere. */
-  --gradient-vibrant: linear-gradient(120deg, var(--color-pink) 0%, var(--color-violet) 50%, var(--color-sapphire) 100%);
+  /* Signature gradient — the swatch strip itself, left to right:
+     navy -> teal -> pale blue -> coral -> red. Used deliberately, on
+     CTAs, price emphasis, and section accents, not everywhere. */
+  --gradient-vibrant: linear-gradient(100deg,
+    var(--color-ink) 0%,
+    var(--color-teal) 28%,
+    var(--color-pale-blue) 50%,
+    var(--color-coral) 74%,
+    var(--color-red) 100%);
 
   /* Soft atmospheric wash — layered low-opacity blooms for gradient-mesh
      backgrounds behind hero/marketing sections (blurred via ::before). */
   --gradient-mesh:
-    radial-gradient(circle at 12% 20%, rgba(255, 79, 139, 0.30), transparent 42%),
-    radial-gradient(circle at 88% 12%, rgba(46, 124, 246, 0.26), transparent 46%),
-    radial-gradient(circle at 60% 85%, rgba(139, 92, 246, 0.22), transparent 42%),
-    radial-gradient(circle at 20% 90%, rgba(201, 151, 30, 0.16), transparent 40%);
+    radial-gradient(circle at 12% 20%, rgba(255, 92, 95, 0.26), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(44, 110, 150, 0.24), transparent 46%),
+    radial-gradient(circle at 55% 90%, rgba(14, 131, 136, 0.22), transparent 44%),
+    radial-gradient(circle at 15% 90%, rgba(200, 31, 53, 0.14), transparent 40%);
   --gradient-mesh-dark:
-    radial-gradient(circle at 15% 25%, rgba(255, 79, 139, 0.22), transparent 45%),
-    radial-gradient(circle at 85% 20%, rgba(46, 124, 246, 0.24), transparent 48%),
-    radial-gradient(circle at 50% 95%, rgba(139, 92, 246, 0.2), transparent 45%);
+    radial-gradient(circle at 15% 25%, rgba(255, 92, 95, 0.22), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(199, 223, 240, 0.18), transparent 48%),
+    radial-gradient(circle at 50% 95%, rgba(14, 131, 136, 0.28), transparent 45%);
 }
 
 @media (prefers-reduced-motion: reduce) {

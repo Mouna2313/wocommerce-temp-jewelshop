@@ -24,7 +24,7 @@
   }
 }
 
-.navbar__toggle.is-open { color: var(--color-gold); }
+.navbar__toggle.is-open { color: var(--color-coral); }
 
 .navbar__menu.is-open { animation: oraandstone-menu-in var(--duration-fast) var(--ease-standard); }
 @keyframes oraandstone-menu-in {

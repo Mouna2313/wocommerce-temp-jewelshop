@@ -27,19 +27,19 @@ $current_user = wp_get_current_user();
 	</p>
 
 	<div class="account-dashboard__cards">
-		<a class="account-card account-card--gold" href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>">
+		<a class="account-card account-card--coral" href="<?php echo esc_url( wc_get_endpoint_url( 'orders' ) ); ?>">
 			<h3><?php esc_html_e( 'Orders', 'oraandstone' ); ?></h3>
 			<p><?php esc_html_e( 'Track and review past purchases.', 'oraandstone' ); ?></p>
 		</a>
-		<a class="account-card account-card--sapphire" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', 'billing' ) ); ?>">
+		<a class="account-card account-card--blue" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-address', 'billing' ) ); ?>">
 			<h3><?php esc_html_e( 'Addresses', 'oraandstone' ); ?></h3>
 			<p><?php esc_html_e( 'Manage shipping and billing details.', 'oraandstone' ); ?></p>
 		</a>
-		<a class="account-card account-card--violet" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-account' ) ); ?>">
+		<a class="account-card account-card--teal" href="<?php echo esc_url( wc_get_endpoint_url( 'edit-account' ) ); ?>">
 			<h3><?php esc_html_e( 'Account Details', 'oraandstone' ); ?></h3>
 			<p><?php esc_html_e( 'Update your name, email, and password.', 'oraandstone' ); ?></p>
 		</a>
-		<a class="account-card account-card--pink" href="<?php echo esc_url( oraandstone_wishlist_get_url() ); ?>">
+		<a class="account-card account-card--red" href="<?php echo esc_url( oraandstone_wishlist_get_url() ); ?>">
 			<h3><?php esc_html_e( 'Wishlist', 'oraandstone' ); ?></h3>
 			<p><?php esc_html_e( 'Saved pieces you\'re thinking about.', 'oraandstone' ); ?></p>
 		</a>

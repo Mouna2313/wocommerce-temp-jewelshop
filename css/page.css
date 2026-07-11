@@ -26,8 +26,8 @@
   margin: var(--space-lg) 0;
 }
 .page-body img { margin-block: var(--space-md); border-radius: var(--radius-md); box-shadow: var(--shadow-card); }
-.page-body a { color: var(--color-sapphire); text-decoration: underline; text-underline-offset: 2px; }
-.page-body a:hover { color: var(--color-pink); }
+.page-body a { color: var(--color-blue); text-decoration: underline; text-underline-offset: 2px; }
+.page-body a:hover { color: var(--color-coral); }
 
 /* ---- About: intro ---- */
 .about-intro { position: relative; text-align: center; padding-bottom: var(--space-lg); }

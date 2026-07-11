@@ -70,7 +70,7 @@ p { margin: 0 0 var(--space-sm); color: var(--color-ink-soft); }
 .hr-gold {
   border: none;
   height: 2px;
-  background: linear-gradient(90deg, var(--color-pink) 0%, var(--color-violet) 45%, var(--color-sapphire) 75%, var(--color-border) 100%);
+  background: linear-gradient(90deg, var(--color-coral) 0%, var(--color-teal) 45%, var(--color-blue) 75%, var(--color-border) 100%);
   border-radius: 2px;
   width: 100%;
   margin: 0;

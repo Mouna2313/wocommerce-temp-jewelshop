@@ -53,7 +53,7 @@
   left: 0; right: 100%;
   bottom: 0;
   height: 1px;
-  background: var(--color-gold);
+  background: var(--color-coral);
   transition: right var(--duration-base) var(--ease-standard);
 }
 .navbar__menu a:hover::after { right: 0; }
@@ -73,12 +73,12 @@
   color: var(--color-ink);
   padding: var(--space-3xs);
 }
-.navbar__icon-btn:hover { color: var(--color-gold); }
+.navbar__icon-btn:hover { color: var(--color-coral); }
 
 .navbar__badge {
   position: absolute;
   top: -4px; right: -6px;
-  background: var(--gradient-gold);
+  background: var(--gradient-coral);
   color: var(--color-surface);
   font-size: 10px;
   font-weight: 700;

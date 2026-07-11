@@ -32,21 +32,21 @@
   box-shadow: var(--shadow-card);
 }
 .btn--primary:hover {
-  background: var(--color-emerald);
-  border-color: var(--color-emerald);
+  background: var(--color-teal);
+  border-color: var(--color-teal);
   box-shadow: var(--shadow-card-hover);
   transform: translateY(-1px);
 }
 
-.btn--gold {
-  background: var(--gradient-gold);
+.btn--coral {
+  background: var(--gradient-coral);
   color: var(--color-surface);
-  border-color: var(--color-gold);
-  box-shadow: var(--shadow-gold);
+  border-color: var(--color-coral);
+  box-shadow: var(--shadow-coral);
 }
-.btn--gold:hover {
-  border-color: var(--color-gold-light);
-  box-shadow: var(--shadow-gold-hover);
+.btn--coral:hover {
+  border-color: var(--color-coral-light);
+  box-shadow: var(--shadow-coral-hover);
   transform: translateY(-1px);
 }
 

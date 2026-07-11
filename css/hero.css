@@ -11,7 +11,7 @@
   gap: var(--space-xl);
   padding-block: var(--space-2xl) var(--space-xl);
 }
-/* Atmospheric gradient-mesh wash — pink/violet/sapphire blooms behind
+/* Atmospheric gradient-mesh wash — coral/blue/teal blooms behind
    the hero copy+media, blurred so it reads as color in the air, not a
    shape. Sits behind everything, never touches text contrast. */
 .hero::before {
@@ -72,7 +72,7 @@
   margin-bottom: var(--space-lg);
   gap: var(--space-md);
 }
-.section__head .label { color: var(--color-gold); display: block; margin-bottom: var(--space-2xs); }
+.section__head .label { color: var(--color-coral); display: block; margin-bottom: var(--space-2xs); }
 
 /* ---- Collections grid ---- */
 .collections {
@@ -157,8 +157,8 @@
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-soft);
 }
-.badge--gold { background: var(--gradient-gold); color: var(--color-surface); }
-.badge--sale { background: var(--gradient-ruby); color: var(--color-surface); box-shadow: var(--shadow-ruby); }
+.badge--coral { background: var(--gradient-coral); color: var(--color-surface); }
+.badge--sale { background: var(--gradient-red); color: var(--color-surface); box-shadow: var(--shadow-red); }
 .badge--new  { background: var(--gradient-vibrant); color: var(--color-surface); box-shadow: var(--shadow-vibrant); }
 .badge--sold { background: var(--color-ink-faint); color: var(--color-surface); }
 
@@ -191,7 +191,7 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
-  border: 3px solid var(--color-gold-light);
+  border: 3px solid var(--color-coral-light);
   box-shadow: 0 10px 30px rgba(28,26,23,0.35), 0 2px 6px rgba(28,26,23,0.2), inset 0 0 0 6px rgba(250,247,242,0.4);
   pointer-events: none;
   opacity: 0;
