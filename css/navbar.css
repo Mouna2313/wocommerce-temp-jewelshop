@@ -9,6 +9,7 @@
   background: rgba(250, 247, 242, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 0 rgba(28,26,23,0.03), 0 12px 24px -16px rgba(28,26,23,0.18);
 }
 
 .navbar {
@@ -72,7 +73,7 @@
 .navbar__badge {
   position: absolute;
   top: -4px; right: -6px;
-  background: var(--color-gold);
+  background: var(--gradient-gold);
   color: var(--color-surface);
   font-size: 10px;
   font-weight: 700;
@@ -80,6 +81,7 @@
   border-radius: 50%;
   width: 16px; height: 16px;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(168,130,60,0.5);
 }
 
 .navbar__toggle {

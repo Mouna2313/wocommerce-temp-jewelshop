@@ -18,28 +18,36 @@
   cursor: pointer;
   transition: background var(--duration-fast) var(--ease-standard),
               color var(--duration-fast) var(--ease-standard),
-              border-color var(--duration-fast) var(--ease-standard);
+              border-color var(--duration-fast) var(--ease-standard),
+              box-shadow var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
   white-space: nowrap;
 }
+.btn:active { transform: translateY(1px); }
 
 .btn--primary {
   background: var(--color-ink);
   color: var(--color-bg);
   border-color: var(--color-ink);
+  box-shadow: var(--shadow-card);
 }
 .btn--primary:hover {
   background: var(--color-emerald);
   border-color: var(--color-emerald);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-1px);
 }
 
 .btn--gold {
-  background: var(--color-gold);
+  background: var(--gradient-gold);
   color: var(--color-surface);
   border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
 }
 .btn--gold:hover {
-  background: var(--color-gold-light);
   border-color: var(--color-gold-light);
+  box-shadow: var(--shadow-gold-hover);
+  transform: translateY(-1px);
 }
 
 .btn--outline {
@@ -50,6 +58,8 @@
 .btn--outline:hover {
   background: var(--color-ink);
   color: var(--color-bg);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-1px);
 }
 
 .btn--ghost {
