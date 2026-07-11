@@ -66,11 +66,12 @@ p { margin: 0 0 var(--space-sm); color: var(--color-ink-soft); }
   color: var(--color-ink-soft);
 }
 
-/* ---- Hairline divider (structural signature, replaces card shadows) ---- */
+/* ---- Divider — a thin band of the signature gradient, not a plain hairline ---- */
 .hr-gold {
   border: none;
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-gold) 0%, var(--color-border) 60%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-pink) 0%, var(--color-violet) 45%, var(--color-sapphire) 75%, var(--color-border) 100%);
+  border-radius: 2px;
   width: 100%;
   margin: 0;
 }

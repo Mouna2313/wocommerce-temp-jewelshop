@@ -27,7 +27,12 @@
   font-weight: 500;
   color: var(--color-ink);
 }
-.navbar__logo span { color: var(--color-gold); }
+.navbar__logo span {
+  background: var(--gradient-vibrant);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 .navbar__menu {
   display: flex;

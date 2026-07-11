@@ -13,7 +13,7 @@ get_header();
 		<h1 class="hero__title"><?php esc_html_e( 'Jewelry that catches the light you already have.', 'oraandstone' ); ?></h1>
 		<p class="hero__sub"><?php esc_html_e( 'Solid gold and ethically sourced stones, designed to be worn daily and passed down.', 'oraandstone' ); ?></p>
 		<div class="hero__actions">
-			<a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="btn btn--primary"><?php esc_html_e( 'Shop the Collection', 'oraandstone' ); ?></a>
+			<a href="<?php echo esc_url( home_url( '/shop' ) ); ?>" class="btn btn--vibrant"><?php esc_html_e( 'Shop the Collection', 'oraandstone' ); ?></a>
 			<a href="<?php echo esc_url( home_url( '/about' ) ); ?>" class="btn btn--outline"><?php esc_html_e( 'Our Story', 'oraandstone' ); ?></a>
 		</div>
 	</div>
@@ -91,7 +91,7 @@ get_header();
 		<form class="newsletter-form" method="post" action="#">
 			<label class="visually-hidden" for="newsletter-email"><?php esc_html_e( 'Email address', 'oraandstone' ); ?></label>
 			<input type="email" id="newsletter-email" name="email" placeholder="<?php esc_attr_e( 'Your email', 'oraandstone' ); ?>" required>
-			<button type="submit" class="btn btn--gold"><?php esc_html_e( 'Sign Up', 'oraandstone' ); ?></button>
+			<button type="submit" class="btn btn--vibrant"><?php esc_html_e( 'Sign Up', 'oraandstone' ); ?></button>
 		</form>
 	</div>
 </section>

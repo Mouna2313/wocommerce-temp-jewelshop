@@ -4,14 +4,34 @@
 
 /* ---- Hero: asymmetric, editorial ---- */
 .hero {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: var(--space-xl);
   padding-block: var(--space-2xl) var(--space-xl);
 }
+/* Atmospheric gradient-mesh wash — pink/violet/sapphire blooms behind
+   the hero copy+media, blurred so it reads as color in the air, not a
+   shape. Sits behind everything, never touches text contrast. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -15% -8%;
+  background: var(--gradient-mesh);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
 
-.hero__copy .label { color: var(--color-gold); margin-bottom: var(--space-sm); display: block; }
+.hero__copy .label {
+  background: var(--gradient-vibrant);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: var(--space-sm);
+  display: block;
+}
 
 .hero__title {
   font-size: var(--text-hero);
@@ -139,7 +159,7 @@
 }
 .badge--gold { background: var(--gradient-gold); color: var(--color-surface); }
 .badge--sale { background: var(--gradient-ruby); color: var(--color-surface); box-shadow: var(--shadow-ruby); }
-.badge--new  { background: var(--gradient-sapphire); color: var(--color-surface); box-shadow: var(--shadow-sapphire); }
+.badge--new  { background: var(--gradient-vibrant); color: var(--color-surface); box-shadow: var(--shadow-vibrant); }
 .badge--sold { background: var(--color-ink-faint); color: var(--color-surface); }
 
 .product-card__name {
@@ -151,8 +171,11 @@
   font-family: var(--font-utility);
   font-size: var(--text-small);
   letter-spacing: 0.04em;
-  color: var(--color-gold);
-  font-weight: 600;
+  font-weight: 700;
+  background: var(--gradient-vibrant);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ---- Signature interaction: jeweler's loupe zoom ----
@@ -218,12 +241,23 @@
 
 /* ---- Newsletter ---- */
 .newsletter {
-  background: linear-gradient(155deg, #1c2e26 0%, var(--color-ink) 50%, #14120f 100%);
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink);
   color: var(--color-bg);
   padding-block: var(--space-xl);
   text-align: center;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
 }
+.newsletter::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: var(--gradient-mesh-dark);
+  filter: blur(70px);
+  pointer-events: none;
+}
+.newsletter .container-narrow { position: relative; }
 .newsletter h2 { color: var(--color-bg); }
 .newsletter p { color: rgba(250,247,242,0.7); }
 .newsletter-form {
