@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Shop — Ora &amp; Stone</title>
+<title>Checkout — Ora &amp; Stone</title>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/buttons.css">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/footer.css">
 <link rel="stylesheet" href="css/woocommerce.css">
 </head>
-<body class="woocommerce woocommerce-page">
+<body class="woocommerce woocommerce-page woocommerce-checkout">
 
 <a class="skip-link" href="#main-content">Skip to content</a>
 
@@ -44,58 +44,9 @@
 </header>
 
 <main id="main-content">
-  <div class="shop-layout container">
-
-    <details class="shop-filters" open>
-      <summary class="shop-filters__summary label">Filter</summary>
-      <div class="shop-filters__body">
-        <a class="shop-filters__clear" href="shop.html" hidden data-clear-filters>Clear all filters</a>
-
-        <div class="widget shop-filters__group">
-          <h3 class="shop-filters__group-title label">Category</h3>
-          <ul data-category-list>
-            <li>Loading…</li>
-          </ul>
-        </div>
-
-        <div class="widget shop-filters__group">
-          <h3 class="shop-filters__group-title label">Price</h3>
-          <form data-price-form>
-            <label class="visually-hidden" for="min-price">Min price</label>
-            <input type="number" id="min-price" name="min_price" min="0" placeholder="Min" style="width:45%">
-            <label class="visually-hidden" for="max-price">Max price</label>
-            <input type="number" id="max-price" name="max_price" min="0" placeholder="Max" style="width:45%">
-            <button type="submit" class="btn btn--outline" style="margin-top:var(--space-xs);width:100%">Apply</button>
-          </form>
-        </div>
-      </div>
-    </details>
-
-    <div class="shop-results">
-      <header class="woocommerce-products-header">
-        <h1 class="woocommerce-products-header__title page-title">Shop</h1>
-      </header>
-
-      <div class="shop-toolbar">
-        <span data-result-count></span>
-        <div class="woocommerce-ordering">
-          <select data-orderby aria-label="Sort products">
-            <option value="menu_order">Default sorting</option>
-            <option value="popularity">Sort by popularity</option>
-            <option value="date">Sort by newest</option>
-            <option value="price">Sort by price: low to high</option>
-            <option value="price-desc">Sort by price: high to low</option>
-          </select>
-        </div>
-      </div>
-
-      <ul class="products" data-product-grid>
-        <li>Loading products…</li>
-      </ul>
-
-      <nav class="shop-pagination" data-pagination aria-label="Product pagination" style="display:flex;gap:var(--space-sm);justify-content:center;margin-top:var(--space-lg)"></nav>
-    </div>
-
+  <div class="container">
+    <header class="page-header"><h1 class="page-title">Checkout</h1></header>
+    <div data-checkout-root><p>Loading your cart…</p></div>
   </div>
 </main>
 
@@ -141,11 +92,10 @@
 <script src="js/config.js"></script>
 <script src="js/store-api.js"></script>
 <script src="js/render-utils.js"></script>
-<script src="js/loupe.js"></script>
 <script src="js/mobile-nav.js"></script>
 <script src="js/cart-badge.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/nav-auth.js"></script>
-<script src="js/shop.js"></script>
+<script src="js/checkout.js"></script>
 </body>
 </html>

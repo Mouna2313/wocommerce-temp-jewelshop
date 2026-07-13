@@ -41,7 +41,7 @@
           '<tr class="order-total"><th>Total</th><td>' + OSRender.formatMoney(t.total_price, t) + '</td></tr>' +
         '</table>' +
         '<div class="wc-proceed-to-checkout">' +
-          '<button type="button" class="btn btn--coral checkout-button" disabled title="Checkout is a follow-up phase — see headless/README.md" style="width:100%">Proceed to Checkout</button>' +
+          '<a href="checkout.html" class="btn btn--coral checkout-button" style="width:100%;text-align:center">Proceed to Checkout</a>' +
         '</div>' +
       '</div>'
     );

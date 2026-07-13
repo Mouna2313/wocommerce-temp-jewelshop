@@ -20,6 +20,7 @@ Zero dependencies — stdlib only, so it runs anywhere Python 3 does:
 Demo-only. Cart state lives in memory and resets when the process
 restarts. Not meant to be exposed publicly or used in production.
 """
+import datetime
 import json
 import re
 import sys
@@ -158,6 +159,67 @@ PRODUCTS_BY_ID.update(VARIATIONS_BY_ID)
 CARTS = {}
 COUPONS = {"WELCOME10": 0.10}
 
+# ---- Auth / accounts / orders (stands in for JWT-auth plugin + mu-plugin-account-api.php) ----
+USERS = {
+    "demo@orastone.com": {
+        "id": 1, "password": "demo1234", "first_name": "Demo", "last_name": "Customer",
+        "billing": {"first_name": "Demo", "last_name": "Customer", "address_1": "123 Market St", "address_2": "",
+                    "city": "Portland", "state": "OR", "postcode": "97201", "country": "US",
+                    "phone": "555-0100", "email": "demo@orastone.com"},
+        "shipping": {"first_name": "Demo", "last_name": "Customer", "address_1": "123 Market St", "address_2": "",
+                     "city": "Portland", "state": "OR", "postcode": "97201", "country": "US", "phone": "555-0100"},
+    },
+}
+TOKENS = {}
+ORDER_SEQ = [1000]
+ORDERS = [
+    {
+        "id": 1000, "number": "1000", "customer_email": "demo@orastone.com", "status": "completed",
+        "date_created": "2026-06-02T10:00:00", "payment_method_title": "Cash on Delivery",
+        "items": [{"name": "Aurora Solitaire Ring", "quantity": 1, "total": "1299.00",
+                   "image": "http://localhost:%d/assets/collection-rings.jpg" % PORT, "product_id": 1}],
+        "subtotal": "1299.00", "shipping_total": "0.00", "total_tax": "0.00", "total": "1299.00",
+        "billing_address": "Demo Customer<br/>123 Market St<br/>Portland, OR 97201",
+        "shipping_address": "Demo Customer<br/>123 Market St<br/>Portland, OR 97201",
+    },
+    {
+        "id": 999, "number": "999", "customer_email": "demo@orastone.com", "status": "processing",
+        "date_created": "2026-07-01T14:30:00", "payment_method_title": "Direct Bank Transfer",
+        "items": [{"name": "Drop Stone Earrings", "quantity": 1, "total": "540.00",
+                   "image": "http://localhost:%d/assets/collection-earrings.jpg" % PORT, "product_id": 6}],
+        "subtotal": "540.00", "shipping_total": "0.00", "total_tax": "0.00", "total": "540.00",
+        "billing_address": "Demo Customer<br/>123 Market St<br/>Portland, OR 97201",
+        "shipping_address": "Demo Customer<br/>123 Market St<br/>Portland, OR 97201",
+    },
+]
+
+
+def order_timeline(status):
+    if status in ("cancelled", "failed", "refunded"):
+        messages = {"cancelled": "This order was cancelled.", "failed": "Payment failed for this order.", "refunded": "This order was refunded."}
+        return True, messages[status], []
+    reached = {"placed": True, "processing": status in ("processing", "completed"), "shipped": status == "completed", "delivered": status == "completed"}
+    labels = {"placed": "Order Placed", "processing": "Processing", "shipped": "Shipped", "delivered": "Delivered"}
+    current = "placed"
+    for key in ("placed", "processing", "shipped", "delivered"):
+        if reached[key]:
+            current = key
+    timeline = [{"key": k, "label": labels[k], "reached": reached[k], "is_current": k == current} for k in labels]
+    return False, "", timeline
+
+
+def format_order_summary(order):
+    return {"id": order["id"], "number": order["number"], "status": order["status"],
+            "date_created": order["date_created"], "total": order["total"], "currency": "USD",
+            "item_count": sum(i["quantity"] for i in order["items"])}
+
+
+def format_order_detail(order):
+    is_stopped, stopped_message, timeline = order_timeline(order["status"])
+    return dict(order, status_label=order["status"].capitalize(), is_stopped=is_stopped,
+                stopped_message=stopped_message, timeline=timeline, tracking_number="", tracking_carrier="",
+                currency="USD")
+
 
 def new_cart():
     return {"items": {}, "coupons": []}
@@ -206,7 +268,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", origin)
         self.send_header("Vary", "Origin")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type, Nonce, Cart-Token")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, Nonce, Cart-Token")
         self.send_header("Access-Control-Expose-Headers", "Nonce, Cart-Token, X-WP-Total, X-WP-TotalPages")
 
     def _cart_token(self):
@@ -215,6 +277,13 @@ class Handler(BaseHTTPRequestHandler):
             token = str(uuid.uuid4())
             CARTS[token] = new_cart()
         return token
+
+    def _current_user_email(self):
+        """Stands in for the JWT plugin's determine_current_user hook."""
+        auth = self.headers.get("Authorization", "")
+        if not auth.startswith("Bearer "):
+            return None
+        return TOKENS.get(auth[len("Bearer "):])
 
     def _send_json(self, payload, status=200, extra_headers=None, cart_token=None):
         body = json.dumps(payload).encode("utf-8")
@@ -306,6 +375,32 @@ class Handler(BaseHTTPRequestHandler):
             token = self._cart_token()
             return self._send_json(cart_response(CARTS[token]), cart_token=token)
 
+        if path == "/wp-json/oraandstone/v1/orders":
+            email = self._current_user_email()
+            if not email:
+                return self._send_json({"message": "You must be logged in."}, status=401)
+            mine = [o for o in ORDERS if o["customer_email"] == email]
+            mine.sort(key=lambda o: o["date_created"], reverse=True)
+            return self._send_json([format_order_summary(o) for o in mine])
+
+        m = re.match(r"^/wp-json/oraandstone/v1/orders/(\d+)$", path)
+        if m:
+            email = self._current_user_email()
+            if not email:
+                return self._send_json({"message": "You must be logged in."}, status=401)
+            order = next((o for o in ORDERS if o["id"] == int(m.group(1))), None)
+            if not order or order["customer_email"] != email:
+                return self._send_json({"message": "Order not found."}, status=404)
+            return self._send_json(format_order_detail(order))
+
+        if path == "/wp-json/oraandstone/v1/account":
+            email = self._current_user_email()
+            if not email:
+                return self._send_json({"message": "You must be logged in."}, status=401)
+            user = USERS[email]
+            return self._send_json({"first_name": user["first_name"], "last_name": user["last_name"],
+                                     "email": email, "billing": user["billing"], "shipping": user["shipping"]})
+
         self.send_response(404)
         self._cors()
         self.end_headers()
@@ -370,6 +465,88 @@ class Handler(BaseHTTPRequestHandler):
                 cart["coupons"].remove(code)
             return self._send_json(cart_response(cart), cart_token=token)
 
+        if path == "/wp-json/wc/store/v1/checkout":
+            if not cart["items"]:
+                return self._send_json({"message": "Your cart is empty."}, status=400, cart_token=token)
+
+            billing = data.get("billing_address") or {}
+            shipping = data.get("shipping_address") or billing
+            payment_method = data.get("payment_method") or "cod"
+            method_titles = {"cod": "Cash on Delivery", "bacs": "Direct Bank Transfer"}
+
+            cart_data = cart_response(cart)
+            order_id = ORDER_SEQ[0] + 1
+            ORDER_SEQ[0] = order_id
+            email = self._current_user_email() or billing.get("email", "guest@example.com")
+
+            def fmt_addr(a):
+                return "%s %s<br/>%s<br/>%s, %s %s" % (
+                    a.get("first_name", ""), a.get("last_name", ""), a.get("address_1", ""),
+                    a.get("city", ""), a.get("state", ""), a.get("postcode", ""))
+
+            order = {
+                "id": order_id, "number": str(order_id), "customer_email": email, "status": "processing",
+                "date_created": datetime.datetime.utcnow().isoformat(),
+                "payment_method_title": method_titles.get(payment_method, payment_method),
+                "items": [{"name": it["name"], "quantity": it["quantity"],
+                           "total": str(int(it["totals"]["line_subtotal"]) / 100.0),
+                           "image": (it["images"][0]["src"] if it["images"] else ""), "product_id": it["id"]} for it in cart_data["items"]],
+                "subtotal": str(int(cart_data["totals"]["total_items"]) / 100.0),
+                "shipping_total": "0.00", "total_tax": "0.00",
+                "total": str(int(cart_data["totals"]["total_price"]) / 100.0),
+                "billing_address": fmt_addr(billing), "shipping_address": fmt_addr(shipping),
+            }
+            ORDERS.append(order)
+            cart["items"] = {}
+            cart["coupons"] = []
+
+            return self._send_json({
+                "order_id": order_id, "order_key": "wc_order_demo_%d" % order_id, "status": "processing",
+                "payment_result": {"payment_status": "success", "payment_details": [], "redirect_url": ""},
+            }, cart_token=token)
+
+        if path == "/wp-json/jwt-auth/v1/token":
+            email = (data.get("username") or "").lower()
+            password = data.get("password") or ""
+            user = USERS.get(email)
+            if not user or user["password"] != password:
+                return self._send_json({"message": "Incorrect email or password."}, status=403)
+            tok = str(uuid.uuid4())
+            TOKENS[tok] = email
+            return self._send_json({
+                "token": tok, "user_email": email,
+                "user_nicename": email.split("@")[0],
+                "user_display_name": "%s %s" % (user["first_name"], user["last_name"]),
+            })
+
+        if path == "/wp-json/oraandstone/v1/register":
+            email = (data.get("email") or "").lower()
+            password = data.get("password") or ""
+            if not email or "@" not in email:
+                return self._send_json({"message": "A valid email address is required."}, status=400)
+            if len(password) < 8:
+                return self._send_json({"message": "Password must be at least 8 characters."}, status=400)
+            if email in USERS:
+                return self._send_json({"message": "An account with this email already exists."}, status=409)
+            USERS[email] = {
+                "id": len(USERS) + 1, "password": password,
+                "first_name": data.get("first_name") or "", "last_name": data.get("last_name") or "",
+                "billing": {"email": email}, "shipping": {},
+            }
+            return self._send_json({"success": True, "user_id": USERS[email]["id"]})
+
+        if path == "/wp-json/oraandstone/v1/account":
+            email = self._current_user_email()
+            if not email:
+                return self._send_json({"message": "You must be logged in."}, status=401)
+            user = USERS[email]
+            if "first_name" in data: user["first_name"] = data["first_name"]
+            if "last_name" in data: user["last_name"] = data["last_name"]
+            if isinstance(data.get("billing"), dict): user["billing"].update(data["billing"])
+            if isinstance(data.get("shipping"), dict): user["shipping"].update(data["shipping"])
+            return self._send_json({"first_name": user["first_name"], "last_name": user["last_name"],
+                                     "email": email, "billing": user["billing"], "shipping": user["shipping"]})
+
         self.send_response(404)
         self._cors()
         self.end_headers()
@@ -379,7 +556,8 @@ if __name__ == "__main__":
     server = ThreadingHTTPServer(("0.0.0.0", PORT), Handler)
     print("Ora & Stone dummy Store API running at http://localhost:%d" % PORT)
     print("Point headless/js/config.js API_BASE at this URL to demo the frontend.")
-    print("Try coupon code WELCOME10 on the cart page. Ctrl+C to stop.")
+    print("Try coupon code WELCOME10 on the cart page.")
+    print("Demo login: demo@orastone.com / demo1234 (has 2 sample orders). Ctrl+C to stop.")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

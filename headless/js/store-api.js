@@ -35,9 +35,16 @@
   function doFetch(path, options) {
     options = options || {};
     var method = (options.method || 'GET').toUpperCase();
+    // When logged in (see js/auth.js), attaching the JWT here — not just on
+    // the account-api calls — is what makes an order placed at checkout
+    // attach to the customer's account instead of coming through as a
+    // guest order: the JWT plugin resolves wp_get_current_user() for any
+    // REST request that carries it, Store API included.
+    var authToken = localStorage.getItem('os_auth_token');
     var headers = Object.assign(
       { 'Content-Type': 'application/json', 'Cart-Token': getToken() },
       method !== 'GET' ? { 'Nonce': getNonce() } : {},
+      authToken ? { 'Authorization': 'Bearer ' + authToken } : {},
       options.headers || {}
     );
 
@@ -118,6 +125,22 @@
     },
     removeCoupon: function (code) {
       return request('/cart/remove-coupon', { method: 'POST', body: { code: code } });
+    },
+    // billing/shipping: the address shape documented in headless/README.md
+    // (first_name, last_name, address_1, city, state, postcode, country,
+    // email, phone). paymentMethod: a gateway id enabled in WooCommerce →
+    // Settings → Payments that supports the Blocks/Store API checkout,
+    // e.g. 'cod' or 'bacs' — see README for why those two specifically.
+    checkout: function (billing, shipping, paymentMethod) {
+      return request('/checkout', {
+        method: 'POST',
+        body: {
+          billing_address: billing,
+          shipping_address: shipping || billing,
+          payment_method: paymentMethod,
+          payment_data: [],
+        },
+      });
     },
   };
 })(window);

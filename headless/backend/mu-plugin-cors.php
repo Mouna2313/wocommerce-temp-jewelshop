@@ -2,10 +2,11 @@
 /**
  * Plugin Name: Ora & Stone — Headless CORS Bridge
  * Description: Lets the separately-hosted headless frontend (headless/) call this
- *              site's WooCommerce Store API from another origin. Required because
- *              the frontend uses Cart-Token/Nonce headers instead of cookies, and
- *              a cross-origin fetch() can only read response headers the server
- *              explicitly exposes.
+ *              site's WooCommerce Store API and the account API (see
+ *              mu-plugin-account-api.php) from another origin. Required because
+ *              the frontend uses Cart-Token/Nonce/Authorization headers instead
+ *              of cookies, and a cross-origin fetch() can only send/read headers
+ *              the server explicitly allows.
  *
  * INSTALL: copy this file into wp-content/mu-plugins/ on the WordPress site that
  * is acting as the backend (mu-plugins load automatically, no activation needed;
@@ -34,7 +35,7 @@ $ora_stone_send_cors_headers = function () use ( $ora_stone_allowed_origins ) {
 	header( 'Access-Control-Allow-Origin: ' . esc_url_raw( $origin ) );
 	header( 'Vary: Origin' );
 	header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
-	header( 'Access-Control-Allow-Headers: Content-Type, Nonce, Cart-Token' );
+	header( 'Access-Control-Allow-Headers: Content-Type, Authorization, Nonce, Cart-Token' );
 	// Store API write requests need the client to read these back off the
 	// response — browsers hide all response headers cross-origin unless the
 	// server lists them here.

@@ -83,6 +83,11 @@
   display: flex; align-items: center; justify-content: center;
   box-shadow: 0 2px 6px rgba(168,130,60,0.5);
 }
+/* An author-stylesheet display:flex here otherwise beats the browser's
+   own [hidden]{display:none} UA rule (same specificity, but UA origin
+   always loses to author origin) — without this, setting the `hidden`
+   attribute on the badge silently stops hiding it. */
+.navbar__badge[hidden] { display: none; }
 
 .navbar__toggle {
   display: none;

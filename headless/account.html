@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Account — Ora &amp; Stone</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/mobile-nav.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/woocommerce.css">
+</head>
+<body class="woocommerce woocommerce-page woocommerce-account">
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="navbar__logo">Ora <span>&amp;</span> Stone</a>
+    <nav class="navbar__menu" aria-label="Primary">
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#story">Our Story</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="navbar__icon-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a class="navbar__icon-btn" href="account.html" aria-label="My account" data-account-link>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </a>
+      <a class="navbar__icon-btn" href="cart.html" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l3-7H5.4M7 13L5.4 5M7 13l-2 5h13"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="navbar__badge" data-cart-badge hidden>0</span>
+      </a>
+      <button class="navbar__toggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+  <div class="container" data-account-gate>
+    <p>Checking your session…</p>
+  </div>
+
+  <div class="container account-layout" data-account-app hidden>
+    <nav class="woocommerce-MyAccount-navigation" aria-label="Account">
+      <ul>
+        <li data-tab-link="overview" class="is-active"><a href="account.html?tab=overview">Dashboard</a></li>
+        <li data-tab-link="orders"><a href="account.html?tab=orders">Orders</a></li>
+        <li data-tab-link="addresses"><a href="account.html?tab=addresses">Addresses</a></li>
+        <li data-tab-link="details"><a href="account.html?tab=details">Account Details</a></li>
+        <li class="woocommerce-MyAccount-navigation-link--customer-logout"><a href="#" data-logout>Log out</a></li>
+      </ul>
+    </nav>
+
+    <div>
+      <section data-tab="overview">
+        <p class="account-dashboard__welcome">
+          Welcome back, <strong data-welcome-name></strong>.
+        </p>
+        <div class="account-dashboard__cards">
+          <a class="account-card account-card--coral" href="account.html?tab=orders"><h3>Orders</h3><p>Track and review past purchases.</p></a>
+          <a class="account-card account-card--blue" href="account.html?tab=addresses"><h3>Addresses</h3><p>Manage shipping and billing details.</p></a>
+          <a class="account-card account-card--teal" href="account.html?tab=details"><h3>Account Details</h3><p>Update your name and contact info.</p></a>
+        </div>
+        <div class="account-dashboard__recent">
+          <div class="section__head"><h3>Recent Orders</h3><a class="btn btn--ghost" href="account.html?tab=orders">View All →</a></div>
+          <div data-recent-orders><p>Loading…</p></div>
+        </div>
+      </section>
+
+      <section data-tab="orders" hidden>
+        <h2>Orders</h2>
+        <div data-orders-list><p>Loading…</p></div>
+      </section>
+
+      <section data-tab="addresses" hidden>
+        <h2>Addresses</h2>
+        <p>These addresses are offered by default at checkout.</p>
+        <div class="woocommerce-Addresses address-book">
+          <div class="woocommerce-Address address-book__card">
+            <header class="woocommerce-Address-title title address-book__card-head"><h3>Billing address</h3></header>
+            <form data-address-form="billing">
+              <p class="form-row form-row-first"><label>First name</label><input class="input-text" data-field="first_name"></p>
+              <p class="form-row form-row-last"><label>Last name</label><input class="input-text" data-field="last_name"></p>
+              <p class="form-row form-row-wide"><label>Address</label><input class="input-text" data-field="address_1" placeholder="Street address"></p>
+              <p class="form-row form-row-wide"><input class="input-text" data-field="address_2" placeholder="Apartment, suite, etc. (optional)"></p>
+              <p class="form-row form-row-first"><label>City</label><input class="input-text" data-field="city"></p>
+              <p class="form-row form-row-last"><label>State</label><input class="input-text" data-field="state"></p>
+              <p class="form-row form-row-first"><label>Postcode</label><input class="input-text" data-field="postcode"></p>
+              <p class="form-row form-row-last"><label>Country</label><input class="input-text" data-field="country" placeholder="US"></p>
+              <p class="form-row form-row-first"><label>Phone</label><input class="input-text" data-field="phone"></p>
+              <p class="form-row form-row-last"><label>Email</label><input class="input-text" type="email" data-field="email"></p>
+              <p class="form-row"><button type="submit" class="btn btn--coral">Save billing address</button></p>
+            </form>
+          </div>
+          <div class="woocommerce-Address address-book__card">
+            <header class="woocommerce-Address-title title address-book__card-head"><h3>Shipping address</h3></header>
+            <form data-address-form="shipping">
+              <p class="form-row form-row-first"><label>First name</label><input class="input-text" data-field="first_name"></p>
+              <p class="form-row form-row-last"><label>Last name</label><input class="input-text" data-field="last_name"></p>
+              <p class="form-row form-row-wide"><label>Address</label><input class="input-text" data-field="address_1" placeholder="Street address"></p>
+              <p class="form-row form-row-wide"><input class="input-text" data-field="address_2" placeholder="Apartment, suite, etc. (optional)"></p>
+              <p class="form-row form-row-first"><label>City</label><input class="input-text" data-field="city"></p>
+              <p class="form-row form-row-last"><label>State</label><input class="input-text" data-field="state"></p>
+              <p class="form-row form-row-first"><label>Postcode</label><input class="input-text" data-field="postcode"></p>
+              <p class="form-row form-row-last"><label>Country</label><input class="input-text" data-field="country" placeholder="US"></p>
+              <p class="form-row"><button type="submit" class="btn btn--coral">Save shipping address</button></p>
+            </form>
+          </div>
+        </div>
+        <p data-address-feedback role="status" aria-live="polite"></p>
+      </section>
+
+      <section data-tab="details" hidden>
+        <h2>Account Details</h2>
+        <form data-details-form>
+          <p class="form-row form-row-first"><label>First name</label><input class="input-text" id="details_first_name"></p>
+          <p class="form-row form-row-last"><label>Last name</label><input class="input-text" id="details_last_name"></p>
+          <p class="form-row form-row-wide"><label>Email</label><input class="input-text" id="details_email" type="email" disabled></p>
+          <p style="color:var(--color-ink-faint);font-size:var(--text-small)">To change your password, use <a data-lost-password href="#">the WordPress password reset</a>.</p>
+          <p class="form-row"><button type="submit" class="btn btn--coral">Save changes</button></p>
+        </form>
+        <p data-details-feedback role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">Ora <span>&amp;</span> Stone</div>
+        <p>Fine jewelry, made to be worn every day and kept for a lifetime.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=rings">Rings</a></li>
+          <li><a href="shop.html?category=necklaces">Necklaces</a></li>
+          <li><a href="shop.html?category=earrings">Earrings</a></li>
+          <li><a href="shop.html?category=bracelets">Bracelets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#story">Our Story</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Ora &amp; Stone. All rights reserved.</span>
+      <span>Handcrafted with care.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/store-api.js"></script>
+<script src="js/render-utils.js"></script>
+<script src="js/mobile-nav.js"></script>
+<script src="js/cart-badge.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/nav-auth.js"></script>
+<script src="js/account.js"></script>
+</body>
+</html>
