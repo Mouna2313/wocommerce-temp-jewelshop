@@ -1,0 +1,146 @@
+/* =========================================================
+   ORA & STONE — DESIGN TOKENS
+   Palette locked to the client-supplied swatch: navy, teal,
+   pale blue, coral, red. Cool, saturated, high-contrast.
+   ========================================================= */
+
+:root {
+  /* ---- Color: surfaces ---- */
+  --color-bg:            #F6FAFD;   /* near-white, cool undertone */
+  --color-bg-alt:        #DCEEF8;   /* light tint of the palette's pale blue */
+  --color-surface:       #FFFFFF;
+
+  /* ---- Color: ink (the palette's navy) ---- */
+  --color-ink:           #123A52;   /* navy — replaces warm near-black */
+  --color-ink-soft:      #3E5A70;
+  --color-ink-faint:     #547080;   /* darkened from the raw swatch tint — #7996A8 read 2.97:1 on bg, fails AA */
+
+  /* ---- Color: signature pairing — coral (primary) + teal (secondary) ----
+     --color-coral is deliberately darker than the raw swatch coral: the
+     literal #FF5C5F only clears 3:1 (fine for a button fill's own border,
+     not for the white text sitting on it, and not for text set in coral).
+     Dark enough to also clear 4.5:1 on --color-bg-alt, where prices sit
+     inside .section--alt blocks. #FF5C5F survives as --color-coral-light
+     for large decorative surfaces (gradient highlights, hover glows,
+     dark-background focus rings) where text contrast isn't in play. */
+  --color-coral:         #C92A2D;   /* primary accent — CTAs, prices, focus (5.5:1 on white) */
+  --color-coral-light:   #FF5C5F;   /* decorative only — do not set text in this */
+  --color-coral-dim:     #FFE2E2;
+  --color-teal:          #0E8388;   /* secondary accent — 4.5:1 on white */
+  --color-teal-light:    #14A8AE;
+
+  /* ---- Color: remaining palette swatches ---- */
+  --color-pale-blue:     #C7DFF0;   /* literal 3rd swatch — light accent / tint fills, not text */
+  --color-blue:          #2C6E96;   /* mid blue, between navy and pale blue — 5.6:1 on white */
+  --color-blue-light:    #5A96BC;
+  --color-red:           #C81F35;   /* sale, urgency, error — 5.7:1 on white */
+  --color-red-light:     #E14A5C;
+
+  /* ---- Color: structure ---- */
+  --color-border:        #CDE0EC;   /* decorative dividers only — no contrast requirement */
+  --color-border-strong: #5F91B0;   /* functional input/button borders — 3.4:1 on white, meets WCAG 1.4.11 */
+  --color-focus:         var(--color-coral);
+
+  /* ---- Color: state ---- */
+  --color-error:         #C81F35;
+  --color-success:       #0E8388;
+
+  /* ---- Typography ---- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Work Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-utility: "Work Sans", sans-serif;
+
+  /* Fraunces optical-size / softness axes, used only at hero scale */
+  --font-display-hero-settings: "opsz" 72, "SOFT" 40, "WONK" 0;
+  --font-display-settings:      "opsz" 24, "SOFT" 20, "WONK" 0;
+
+  /* ---- Type scale ---- */
+  --text-hero:   clamp(2.75rem, 5vw + 1rem, 5.5rem);
+  --text-h1:     clamp(2.25rem, 3vw + 1rem, 3.25rem);
+  --text-h2:     clamp(1.75rem, 2vw + 1rem, 2.25rem);
+  --text-h3:     1.375rem;
+  --text-body-lg:1.125rem;
+  --text-body:   1rem;
+  --text-small:  0.875rem;
+  --text-label:  0.75rem;
+
+  /* ---- Utility label styling (eyebrows, filters, prices) ---- */
+  --label-tracking: 0.12em;
+
+  /* ---- Spacing scale ---- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs:  0.75rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2.5rem;
+  --space-xl:  4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 9rem;
+
+  /* ---- Layout ---- */
+  --content-max: 80rem;      /* 1280px */
+  --content-narrow: 47.5rem; /* 760px */
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+
+  /* ---- Radius ---- */
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-md: 0.625rem; /* 10px */
+  --radius-lg: 1rem;     /* 16px */
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-base: 300ms;
+  --duration-slow: 600ms;
+
+  /* ---- Elevation ----
+     Navy-tinted shadows (ink at low opacity, not neutral grey) so depth
+     reads as part of this palette rather than generic UI shadow. */
+  --shadow-soft:      0 1px 2px rgba(18, 58, 82, 0.06), 0 8px 24px rgba(18, 58, 82, 0.08);
+  --shadow-card:       0 1px 3px rgba(18, 58, 82, 0.08), 0 10px 28px rgba(18, 58, 82, 0.12);
+  --shadow-card-hover: 0 4px 10px rgba(18, 58, 82, 0.14), 0 20px 44px rgba(18, 58, 82, 0.2);
+  --shadow-coral:      0 10px 30px rgba(255, 92, 95, 0.4);
+  --shadow-coral-hover:0 16px 40px rgba(255, 92, 95, 0.52);
+  --shadow-teal:       0 10px 28px rgba(14, 131, 136, 0.35);
+  --shadow-blue:       0 10px 28px rgba(44, 110, 150, 0.32);
+  --shadow-red:        0 10px 28px rgba(200, 31, 53, 0.35);
+  --shadow-vibrant:    0 12px 32px rgba(14, 131, 136, 0.26), 0 4px 14px rgba(255, 92, 95, 0.24);
+  --shadow-inset-hairline: inset 0 0 0 1px rgba(18, 58, 82, 0.06);
+
+  /* Palette surface gradients — foil/faceted feel, not flat fills */
+  --gradient-coral: linear-gradient(135deg, var(--color-coral-light) 0%, var(--color-coral) 55%, #C93F42 100%);
+  --gradient-teal:  linear-gradient(135deg, var(--color-teal-light) 0%, var(--color-teal) 65%, #095B5F 100%);
+  --gradient-red:   linear-gradient(135deg, var(--color-red-light) 0%, var(--color-red) 60%, #8F1526 100%);
+  --gradient-blue:  linear-gradient(135deg, var(--color-blue-light) 0%, var(--color-blue) 60%, var(--color-ink) 100%);
+
+  /* Signature gradient — the swatch strip itself, left to right:
+     navy -> teal -> pale blue -> coral -> red. Used deliberately, on
+     CTAs, price emphasis, and section accents, not everywhere. */
+  --gradient-vibrant: linear-gradient(100deg,
+    var(--color-ink) 0%,
+    var(--color-teal) 28%,
+    var(--color-pale-blue) 50%,
+    var(--color-coral) 74%,
+    var(--color-red) 100%);
+
+  /* Soft atmospheric wash — layered low-opacity blooms for gradient-mesh
+     backgrounds behind hero/marketing sections (blurred via ::before). */
+  --gradient-mesh:
+    radial-gradient(circle at 12% 20%, rgba(255, 92, 95, 0.26), transparent 42%),
+    radial-gradient(circle at 88% 15%, rgba(44, 110, 150, 0.24), transparent 46%),
+    radial-gradient(circle at 55% 90%, rgba(14, 131, 136, 0.22), transparent 44%),
+    radial-gradient(circle at 15% 90%, rgba(200, 31, 53, 0.14), transparent 40%);
+  --gradient-mesh-dark:
+    radial-gradient(circle at 15% 25%, rgba(255, 92, 95, 0.22), transparent 45%),
+    radial-gradient(circle at 85% 20%, rgba(199, 223, 240, 0.18), transparent 48%),
+    radial-gradient(circle at 50% 95%, rgba(14, 131, 136, 0.28), transparent 45%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ora &amp; Stone — Fine Jewelry</title>
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/buttons.css">
+<link rel="stylesheet" href="css/navbar.css">
+<link rel="stylesheet" href="css/mobile-nav.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/woocommerce.css">
+</head>
+<body class="woocommerce woocommerce-page">
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="navbar__logo">Ora <span>&amp;</span> Stone</a>
+
+    <nav class="navbar__menu" aria-label="Primary">
+      <a href="shop.html">Shop</a>
+      <a href="index.html#collections">Collections</a>
+      <a href="index.html#story">Our Story</a>
+    </nav>
+
+    <div class="navbar__actions">
+      <button class="navbar__icon-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      </button>
+      <a class="navbar__icon-btn" href="cart.html" aria-label="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l3-7H5.4M7 13L5.4 5M7 13l-2 5h13"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg>
+        <span class="navbar__badge" data-cart-badge hidden>0</span>
+      </a>
+      <button class="navbar__toggle" aria-label="Open menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <section class="container hero">
+    <div class="hero__copy">
+      <span class="label">New Season · Autumn Light Collection</span>
+      <h1 class="hero__title">Jewelry that catches the light you already have.</h1>
+      <p class="hero__sub">Solid gold and ethically sourced stones, designed to be worn daily and passed down.</p>
+      <div class="hero__actions">
+        <a href="shop.html" class="btn btn--coral">Shop the Collection</a>
+        <a href="index.html#story" class="btn btn--outline">Our Story</a>
+      </div>
+    </div>
+    <div class="hero__media loupe">
+      <img src="assets/hero-placeholder.jpg" alt="Model wearing a gold ring and layered necklaces">
+    </div>
+  </section>
+
+  <hr class="hr-gold container">
+
+  <section class="section container" id="collections">
+    <div class="section__head">
+      <div>
+        <span class="label">Curated</span>
+        <h2>Shop by Collection</h2>
+      </div>
+      <a href="shop.html" class="btn btn--ghost">View All →</a>
+    </div>
+    <div class="collections">
+      <a class="collection-card" href="shop.html?category=rings">
+        <img src="assets/collection-rings.jpg" alt="Rings collection">
+        <span class="collection-card__label">Rings</span>
+      </a>
+      <a class="collection-card" href="shop.html?category=necklaces">
+        <img src="assets/collection-necklaces.jpg" alt="Necklaces collection">
+        <span class="collection-card__label">Necklaces</span>
+      </a>
+      <a class="collection-card" href="shop.html?category=earrings">
+        <img src="assets/collection-earrings.jpg" alt="Earrings collection">
+        <span class="collection-card__label">Earrings</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <span class="label">Most Loved</span>
+          <h2>Bestsellers</h2>
+        </div>
+        <a href="shop.html" class="btn btn--ghost">View All →</a>
+      </div>
+
+      <ul class="products" data-bestsellers>
+        <li data-loading>Loading products…</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section container" id="story">
+    <div class="story-teaser">
+      <div class="story-teaser__media loupe">
+        <img src="assets/story-placeholder.jpg" alt="Jeweler at work on a gold setting">
+      </div>
+      <div class="story-teaser__copy">
+        <span class="label">Since 2016</span>
+        <blockquote>"Every piece starts on the bench, not the screen."</blockquote>
+        <p>We work with a small studio of goldsmiths to make jewelry meant for everyday wear — solid metals, responsibly sourced stones, and repairs for life.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container-narrow">
+      <h2>Join the Ora &amp; Stone list</h2>
+      <p>New arrivals, restocks, and the occasional invitation to see the workshop.</p>
+      <form class="newsletter-form" method="post" action="#" onsubmit="return false;">
+        <label class="visually-hidden" for="newsletter-email">Email address</label>
+        <input type="email" id="newsletter-email" name="email" placeholder="Your email" required>
+        <button type="submit" class="btn btn--coral">Sign Up</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__logo">Ora <span>&amp;</span> Stone</div>
+        <p>Fine jewelry, made to be worn every day and kept for a lifetime.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html?category=rings">Rings</a></li>
+          <li><a href="shop.html?category=necklaces">Necklaces</a></li>
+          <li><a href="shop.html?category=earrings">Earrings</a></li>
+          <li><a href="shop.html?category=bracelets">Bracelets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Shipping &amp; Returns</a></li>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#story">Our Story</a></li>
+          <li><a href="#">Journal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span data-year></span> Ora &amp; Stone. All rights reserved.</span>
+      <span>Handcrafted with care.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/store-api.js"></script>
+<script src="js/render-utils.js"></script>
+<script src="js/loupe.js"></script>
+<script src="js/mobile-nav.js"></script>
+<script src="js/cart-badge.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* =========================================================
+   ORA & STONE — NAVBAR
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 0 rgba(28,26,23,0.03), 0 12px 24px -16px rgba(28,26,23,0.18);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-sm);
+  gap: var(--space-lg);
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+.navbar__logo span { color: var(--color-coral); }
+
+.navbar__menu {
+  display: flex;
+  gap: var(--space-lg);
+  font-family: var(--font-utility);
+  font-size: var(--text-small);
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+}
+
+.navbar__menu a {
+  position: relative;
+  padding-bottom: var(--space-3xs); /* 4px */
+}
+.navbar__menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-coral);
+  transition: right var(--duration-base) var(--ease-standard);
+}
+.navbar__menu a:hover::after { right: 0; }
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navbar__icon-btn {
+  position: relative;
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ink);
+  padding: var(--space-3xs);
+}
+.navbar__icon-btn:hover { color: var(--color-coral); }
+
+.navbar__badge {
+  position: absolute;
+  top: -0.25rem; right: -0.375rem; /* -4px -6px */
+  background: var(--color-coral);
+  color: var(--color-surface);
+  font-size: 0.625rem; /* 10px */
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 50%;
+  width: 1rem; height: 1rem; /* 16px */
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(168,130,60,0.5);
+}
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 53.75em) {
+  .navbar__menu { display: none; }
+  .navbar__toggle { display: inline-flex; }
+}

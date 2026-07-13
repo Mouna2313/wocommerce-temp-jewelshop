@@ -1,0 +1,277 @@
+/* =========================================================
+   ORA & STONE — HERO + SECTIONS + SIGNATURE LOUPE INTERACTION
+   ========================================================= */
+
+/* ---- Hero: asymmetric, editorial ---- */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-block: var(--space-2xl) var(--space-xl);
+}
+/* Atmospheric gradient-mesh wash — coral/blue/teal blooms behind
+   the hero copy+media, blurred so it reads as color in the air, not a
+   shape. Sits behind everything, never touches text contrast. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -15% -8%;
+  background: var(--gradient-mesh);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero__copy .label {
+  color: var(--color-coral);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.hero__title {
+  font-size: var(--text-hero);
+  font-variation-settings: var(--font-display-hero-settings);
+  margin-bottom: var(--space-md);
+}
+
+.hero__sub {
+  font-size: var(--text-body-lg);
+  max-width: 34ch;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__actions { display: flex; gap: var(--space-sm); }
+
+.hero__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-hover);
+}
+.hero__media img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 53.75em) {
+  .hero { grid-template-columns: 1fr; padding-block: var(--space-xl) var(--space-lg); }
+  .hero__media { order: -1; }
+}
+
+/* ---- Section scaffolding ---- */
+.section { padding-block: var(--space-2xl); }
+.section--alt { background: var(--color-bg-alt); }
+.section__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  gap: var(--space-md);
+}
+.section__head .label { color: var(--color-coral); display: block; margin-bottom: var(--space-2xs); }
+
+/* ---- Collections grid ---- */
+.collections {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+.collection-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--duration-base) var(--ease-standard);
+}
+.collection-card:hover { box-shadow: var(--shadow-card-hover); }
+.collection-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-standard);
+}
+.collection-card:hover img { transform: scale(1.04); }
+.collection-card__label {
+  position: absolute;
+  left: var(--space-sm); bottom: var(--space-sm);
+  background: rgba(250, 247, 242, 0.94);
+  padding: var(--space-2xs) var(--space-sm);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+
+@media (max-width: 53.75em) {
+  .collections { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 35em) {
+  .collections { grid-template-columns: 1fr; }
+}
+
+/* ---- Product grid + card ---- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg) var(--space-md);
+}
+@media (max-width: 64em) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 43.75em)  { .product-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md) var(--space-sm); } }
+
+.product-card { transition: transform var(--duration-base) var(--ease-standard); }
+.product-card:hover { transform: translateY(-3px); }
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  margin-bottom: var(--space-sm);
+  cursor: zoom-in;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--duration-base) var(--ease-standard);
+}
+.product-card:hover .product-card__media { box-shadow: var(--shadow-card-hover); }
+.product-card__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.product-card__badge {
+  position: absolute;
+  top: var(--space-sm); left: var(--space-sm);
+  z-index: 2;
+}
+.badge {
+  display: inline-block;
+  font-family: var(--font-utility);
+  font-size: 0.625rem; /* 10px */
+  text-transform: uppercase;
+  letter-spacing: var(--label-tracking);
+  font-weight: 700;
+  padding: 0.3125rem 0.5625rem; /* 5px 9px */
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+.badge--coral { background: var(--color-coral); color: var(--color-surface); }
+.badge--sale { background: var(--color-red); color: var(--color-surface); box-shadow: var(--shadow-red); }
+.badge--new  { background: var(--color-blue); color: var(--color-surface); box-shadow: var(--shadow-blue); }
+.badge--sold { background: var(--color-ink-faint); color: var(--color-surface); }
+
+.product-card__name {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  margin-bottom: var(--space-3xs);
+}
+.product-card__price {
+  font-family: var(--font-utility);
+  font-size: var(--text-small);
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--color-coral);
+}
+
+/* ---- Signature interaction: jeweler's loupe zoom ----
+   A small circular magnifier follows the cursor over product imagery,
+   echoing how a jeweler inspects a stone. JS toggles --loupe-active
+   and positions --loupe-x / --loupe-y (see js/loupe.js). */
+.loupe {
+  position: relative;
+  overflow: hidden;
+}
+.loupe__glass {
+  position: absolute;
+  width: 8.75rem; /* 140px */
+  height: 8.75rem; /* 140px */
+  border-radius: 50%;
+  border: 3px solid var(--color-coral-light);
+  box-shadow: 0 10px 30px rgba(28,26,23,0.35), 0 2px 6px rgba(28,26,23,0.2), inset 0 0 0 6px rgba(250,247,242,0.4);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  left: var(--loupe-x, 50%);
+  top: var(--loupe-y, 50%);
+  background-image: var(--loupe-bg-image);
+  background-repeat: no-repeat;
+  background-size: var(--loupe-bg-size, 200%);
+  background-position: var(--loupe-bg-pos, center);
+  transition: opacity var(--duration-fast) var(--ease-standard);
+  z-index: 3;
+}
+.loupe:hover .loupe__glass,
+.loupe.is-active .loupe__glass { opacity: 1; }
+
+@media (hover: none) {
+  .loupe__glass { display: none; } /* skip on touch devices */
+}
+
+/* ---- Brand story teaser ---- */
+.story-teaser {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.story-teaser__media {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card-hover);
+}
+.story-teaser__media img { width: 100%; height: 100%; object-fit: cover; }
+.story-teaser__copy blockquote {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-style: italic;
+  line-height: 1.3;
+  margin: 0 0 var(--space-md);
+  color: var(--color-ink);
+}
+@media (max-width: 53.75em) {
+  .story-teaser { grid-template-columns: 1fr; }
+}
+
+/* ---- Newsletter ---- */
+.newsletter {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-ink);
+  color: var(--color-bg);
+  padding-block: var(--space-xl);
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+/* --color-focus is tuned for light backgrounds (4.5:1+ on white/ivory);
+   against this navy section it drops to ~2.5:1, under the 3:1 WCAG
+   1.4.11 floor for a focus indicator. Swap to the lighter coral tier,
+   which still clears 3:1 here. */
+.newsletter :focus-visible { outline-color: var(--color-coral-light); }
+.newsletter::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: var(--gradient-mesh-dark);
+  filter: blur(70px);
+  pointer-events: none;
+}
+.newsletter .container-narrow { position: relative; }
+.newsletter h2 { color: var(--color-bg); }
+.newsletter p { color: rgba(250,247,242,0.7); }
+.newsletter-form {
+  display: flex;
+  gap: var(--space-2xs);
+  max-width: 26.25rem; /* 420px */
+  margin: var(--space-md) auto 0;
+}
+.newsletter-form input {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(250,247,242,0.35);
+  color: var(--color-bg);
+  padding: 0.85em 1em;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-inset-hairline);
+}
+.newsletter-form input::placeholder { color: rgba(250,247,242,0.5); }

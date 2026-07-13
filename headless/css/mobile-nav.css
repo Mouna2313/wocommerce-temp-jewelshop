@@ -1,0 +1,33 @@
+/* =========================================================
+   ORA & STONE — MOBILE NAV
+   Companion to navbar.css's existing .navbar__toggle/.navbar__menu
+   breakpoint; adds the open-state panel styling and toggle icon state
+   without touching navbar.css itself.
+   ========================================================= */
+
+@media (max-width: 53.75em) {
+  .site-header { position: sticky; }
+
+  .navbar__menu.is-open {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md) var(--gutter) var(--space-lg);
+    box-shadow: var(--shadow-card-hover);
+  }
+}
+
+.navbar__toggle.is-open { color: var(--color-coral); }
+
+.navbar__menu.is-open { animation: oraandstone-menu-in var(--duration-fast) var(--ease-standard); }
+@keyframes oraandstone-menu-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
