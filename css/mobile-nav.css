@@ -5,7 +5,7 @@
    without touching navbar.css itself.
    ========================================================= */
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .site-header { position: sticky; }
 
   .navbar__menu.is-open {

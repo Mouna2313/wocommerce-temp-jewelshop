@@ -79,14 +79,14 @@
   --space-3xl: 9rem;
 
   /* ---- Layout ---- */
-  --content-max: 1280px;
-  --content-narrow: 760px;
+  --content-max: 80rem;      /* 1280px */
+  --content-narrow: 47.5rem; /* 760px */
   --gutter: clamp(1.25rem, 4vw, 4rem);
 
   /* ---- Radius ---- */
-  --radius-sm: 4px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-sm: 0.25rem;  /* 4px */
+  --radius-md: 0.625rem; /* 10px */
+  --radius-lg: 1rem;     /* 16px */
 
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);

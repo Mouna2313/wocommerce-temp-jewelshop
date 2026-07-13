@@ -54,7 +54,7 @@
 }
 .hero__media img { width: 100%; height: 100%; object-fit: cover; }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .hero { grid-template-columns: 1fr; padding-block: var(--space-xl) var(--space-lg); }
   .hero__media { order: -1; }
 }
@@ -103,10 +103,10 @@
   box-shadow: var(--shadow-soft);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .collections { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 560px) {
+@media (max-width: 35em) {
   .collections { grid-template-columns: 1fr; }
 }
 
@@ -116,8 +116,8 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-lg) var(--space-md);
 }
-@media (max-width: 1024px) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 700px)  { .product-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md) var(--space-sm); } }
+@media (max-width: 64em) { .product-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 43.75em)  { .product-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-md) var(--space-sm); } }
 
 .product-card { transition: transform var(--duration-base) var(--ease-standard); }
 .product-card:hover { transform: translateY(-3px); }
@@ -144,11 +144,11 @@
 .badge {
   display: inline-block;
   font-family: var(--font-utility);
-  font-size: 10px;
+  font-size: 0.625rem; /* 10px */
   text-transform: uppercase;
   letter-spacing: var(--label-tracking);
   font-weight: 700;
-  padding: 5px 9px;
+  padding: 0.3125rem 0.5625rem; /* 5px 9px */
   background: var(--color-surface);
   color: var(--color-ink);
   border-radius: var(--radius-sm);
@@ -182,8 +182,8 @@
 }
 .loupe__glass {
   position: absolute;
-  width: 140px;
-  height: 140px;
+  width: 8.75rem; /* 140px */
+  height: 8.75rem; /* 140px */
   border-radius: 50%;
   border: 3px solid var(--color-coral-light);
   box-shadow: 0 10px 30px rgba(28,26,23,0.35), 0 2px 6px rgba(28,26,23,0.2), inset 0 0 0 6px rgba(250,247,242,0.4);
@@ -229,7 +229,7 @@
   margin: 0 0 var(--space-md);
   color: var(--color-ink);
 }
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .story-teaser { grid-template-columns: 1fr; }
 }
 
@@ -262,7 +262,7 @@
 .newsletter-form {
   display: flex;
   gap: var(--space-2xs);
-  max-width: 420px;
+  max-width: 26.25rem; /* 420px */
   margin: var(--space-md) auto 0;
 }
 .newsletter-form input {

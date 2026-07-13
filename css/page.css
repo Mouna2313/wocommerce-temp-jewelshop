@@ -66,7 +66,7 @@
 .about-values__item:hover { box-shadow: var(--shadow-vibrant); transform: translateY(-3px); }
 .about-values__item h3 { margin-bottom: var(--space-2xs); }
 .about-values__item p { margin: 0; font-size: var(--text-small); }
-@media (max-width: 860px) {
+@media (max-width: 53.75em) {
   .about-values { grid-template-columns: 1fr; gap: var(--space-md); }
 }
 
@@ -94,7 +94,7 @@
   color: var(--color-coral-light);
 }
 .about-stats .label { color: rgba(250, 247, 242, 0.7); }
-@media (max-width: 700px) {
+@media (max-width: 43.75em) {
   .about-stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-xl) var(--space-md); }
 }
 
