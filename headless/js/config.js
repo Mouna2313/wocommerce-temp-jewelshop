@@ -10,5 +10,8 @@
  * own origin added to its allow-list. See headless/README.md.
  */
 window.OS_CONFIG = {
-  API_BASE: 'https://your-wordpress-site.example',
+  // DEMO: talking to the dummy backend in headless/mock-backend/server.py.
+  // Swap this one line to your real WordPress site's URL when it's ready —
+  // nothing else in the frontend needs to change.
+  API_BASE: 'http://localhost:8090',
 };

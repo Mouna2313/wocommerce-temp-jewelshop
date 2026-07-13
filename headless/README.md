@@ -41,7 +41,35 @@ That's a real decision for whoever manages the WordPress install, since it
 changes what's exposed on the server. Once that's picked, Phase 2 adds
 checkout and account pages on top of the same Store API pattern used here.
 
-## Setup
+## Try it now with dummy data (no WordPress needed)
+
+`js/config.js` currently points at a bundled dummy backend
+(`mock-backend/server.py`) instead of a real WordPress site, so the whole
+frontend can be clicked through today — browsing, filtering, a variable
+product (sizes), add to cart, quantity changes, and a coupon code — with
+zero setup:
+
+```bash
+# terminal 1 — the dummy Store API
+cd headless/mock-backend
+python3 server.py            # http://localhost:8090
+
+# terminal 2 — the frontend itself
+cd headless
+python3 -m http.server 8099  # http://localhost:8099
+```
+
+Open `http://localhost:8099/index.html`. Coupon code `WELCOME10` works on
+the cart page. Cart state lives in memory in the Python process and resets
+when you stop it — it's a stand-in for a database, not one.
+
+**Swapping to a real WordPress site later is a one-line change** — edit
+`API_BASE` in `js/config.js` (see step 1 below) — plus the CORS step (step
+2), since a real WordPress install is on a different origin than
+`localhost:8090`. Nothing else in the frontend changes; it's the same
+Store API shape either way.
+
+## Setup (for the real WordPress backend)
 
 ### 1. Point the frontend at your WordPress site
 
@@ -49,7 +77,7 @@ Edit `js/config.js`:
 
 ```js
 window.OS_CONFIG = {
-  API_BASE: 'https://your-actual-wordpress-site.com',
+  API_BASE: 'https://your-actual-wordpress-site.com', // was mock-backend's localhost:8090
 };
 ```
 
@@ -98,10 +126,12 @@ itself documents for headless/mobile clients.
 
 `js/product.js` matches selected attribute dropdowns (size, metal, etc.)
 against the product's declared variations using the shape the Store API
-docs describe. It's built correctly against the spec, but hasn't been
-exercised against a real store's data — if a product uses an unusual
-attribute setup (e.g. mixed global/custom attributes), double-check this
-once it's wired up to real products, per the comment at the top of
+docs describe, and this has been exercised end-to-end against the dummy
+backend's variable product (a ring with four sizes) — selecting an option
+correctly resolves to that exact variation's price/stock. What's *not*
+verified is a real store's data: if a product uses an unusual attribute
+setup (e.g. mixed global/custom attributes), double-check this once it's
+wired up to real WooCommerce products, per the comment at the top of
 `product.js`.
 
 ## File map
@@ -120,4 +150,6 @@ headless/
   assets/         — same placeholder photography as the PHP version
   backend/
     mu-plugin-cors.php — install on WordPress, see Setup step 2
+  mock-backend/
+    server.py       — dummy Store API for demoing without WordPress
 ```
